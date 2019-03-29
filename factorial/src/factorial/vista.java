@@ -7,7 +7,8 @@ public class vista extends JFrame{
     
     JButton boton = new JButton();
     JLabel label = new JLabel();
-    JTextArea text = new JTextArea();
+    JLabel num = new JLabel();
+    JTextField text = new JTextField();
     JPanel panel = new JPanel();
     
     public vista(){
@@ -16,20 +17,24 @@ public class vista extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setVisible(true);
-        this.elementos();
     }
     public void elementos(){
+        this.setVisible(true);
         this.getContentPane().add(panel);
-        panel.setLayout(null);
-        panel.setBackground(Color.BLACK);    
+        panel.setLayout(null);  
         panel.setSize(500,500);
-        text.setBounds(0,0,100,40);
+        text.setBounds(120,10,100,20);
         panel.add(text);
-        boton.setBounds(0,100,30,30);
+        num.setBounds(0,0,150,40);
+        num.setText("Digite el número");
+        panel.add(num);
+        boton.setBounds(120,100,100,20);
+        boton.setText("Factorial");
         panel.add(boton);
-        label.setBounds(0,200,100,50);
-        label.setForeground(Color.WHITE);
+        label.setBounds(100,200,200,50);
         panel.add(label);
+    }
+    public void listener(controlador cont){
+        boton.addActionListener(cont);
     }
 }
