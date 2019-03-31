@@ -19,10 +19,10 @@ public class controlador implements ActionListener{
         int b = Integer.parseInt(v.b.getText());
         int c = Integer.parseInt(v.c.getText());
         int d = Integer.parseInt(v.d.getText());
-        t.evalua(a,b,c,d);
-        t.llena_arrays(a, b, c, d);
-        contador++;
-        v.resultado.setText("La raíz por ruffini = "+t.raiz);
+        t.limpia(a,b,c,d);
+        v.raiz1.setText("Raíz por ruffini: "+t.raiz);
+        v.raiz2.setText("Raíz por fórmula cuadrática: "+t.r2);
+        v.raiz3.setText("Raíz 2 por fórmula cuadrática: "+t.r3);
     }
     
 }

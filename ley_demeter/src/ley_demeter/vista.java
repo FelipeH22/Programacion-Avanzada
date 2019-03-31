@@ -13,7 +13,9 @@ public class vista extends JFrame{
     JTextField b = new JTextField();
     JTextField c = new JTextField();
     JTextField d = new JTextField();
-    JLabel resultado = new JLabel();
+    JLabel raiz1 = new JLabel();
+    JLabel raiz2 = new JLabel();
+    JLabel raiz3 = new JLabel();
     
     public vista(){
         this.setSize(500,500);
@@ -50,9 +52,15 @@ public class vista extends JFrame{
         boton.setText("Raíces");
         panel.add(boton);
         //Label Resultado
-        resultado.setBounds(250,250,150,50);
-        resultado.setText("Resultado: ");
-        panel.add(resultado);    
+        raiz1.setBounds(250,250,150,50);
+        raiz1.setText("Raíz 1: ");
+        panel.add(raiz1);  
+        raiz2.setBounds(250,300,200,50);
+        raiz2.setText("Raíz 2: ");
+        panel.add(raiz2);  
+        raiz3.setBounds(250,350,200,50);
+        raiz3.setText("Raíz 3: ");
+        panel.add(raiz3);  
         letras();
     }
     
