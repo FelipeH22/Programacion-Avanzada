@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="libreria_simplex/src"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libreria_simplex/dist/libreria_simplex.jar"/>
+	<classpathentry kind="output" path="libreria_simplex/build/classes"/>
+</classpath>
