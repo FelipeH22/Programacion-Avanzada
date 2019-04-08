@@ -1,6 +1,5 @@
 package simplex;
 
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.*;
 
@@ -75,7 +74,7 @@ public class vista extends JFrame{
                  for(t=0;t<n;t++)
                 {
                    panel.add(variables[t]);
-                   variables[t].setBounds(105+(t*50),290+(h*20),30,20);
+                   variables[t].setBounds(10+(t*50),290+(h*20),30,20);
                 }   
                 h++; 
                 i++;
