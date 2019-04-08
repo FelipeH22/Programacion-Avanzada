@@ -4,9 +4,10 @@ package simplex;
 public class Simplex {
 
     public static void main(String[] args) {
-        //lib_simplex lib = new lib_simplex();
-        //lib.transforma_ecuaciones();
         vista v = new vista();
+        lib_simplex lib = new lib_simplex();
+        controlador u = new controlador(v,lib);
+        v.asigna_oyentes(u);
         v.componentes();
     }
     
