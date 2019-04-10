@@ -7,18 +7,10 @@ public class lib_simplex {
     ArrayList <Integer> z = new ArrayList<>();
     ArrayList <Integer> z_temp = new ArrayList<>();
     ArrayList <Integer> resultados = new ArrayList<>();
-    ArrayList <Integer> ecuacion1 = new ArrayList<>();
-    ArrayList <Integer> ecuacion2 = new ArrayList<>();
-    ArrayList <Integer> ecuacion3 = new ArrayList<>();
-    ArrayList <Integer> ecuacion4 = new ArrayList<>();
-    ArrayList <Integer> ecuacion5 = new ArrayList<>();
-    ArrayList <Integer> ecuacion6 = new ArrayList<>();
-    ArrayList <Integer> ecuacion7 = new ArrayList<>();
-    ArrayList <Integer> ecuacion8 = new ArrayList<>();
-    ArrayList <Integer> ecuacion9 = new ArrayList<>();
-    ArrayList <Integer> ecuacion10 = new ArrayList<>();
+    ArrayList <Integer> ecuacion[];
     ArrayList <Integer> ecuaciones = new ArrayList<>();
     ArrayList <Integer> s = new ArrayList<>();
+    ArrayList <Integer> line[];
     
     public void transforma_ecuaciones(int j, int n){
         //Iguala z a 0 
@@ -26,9 +18,34 @@ public class lib_simplex {
             z.add(z_temp.get(i)*-1);        
         //Añade variables s 
         for(i=0;i<j;i++)
-            s.add(1);
+        {
+            s.add(0);
+            s.add(i,1);
+            s.add(0);
+        }
+            
     }
-    public void crea_tabla(){
-        
+    public void crea_tabla(int j, int n){
+        line = new ArrayList[n+s.size()+2];
+        for(i=0;i<n+s.size()+2;i++)
+            line[i] = new ArrayList(); 
+        for(i=0;i<j;i++)
+        {
+            line[i].add(0);
+        }
+        line[j].add(1);
+        for(i=0;i<j;i++)
+        {
+            line[i].addAll(ecuacion[i]);
+            line[i].add(s.get(i));
+            line[i].add(resultados.get(i));
+        }
+        for(i=0;i<line[1].size();i++)
+            System.out.println(line[1].get(i));
+            
+    }
+    public void calcula(int j, int n){
+        transforma_ecuaciones(j,n);
+        crea_tabla(j,n);
     }
 }
