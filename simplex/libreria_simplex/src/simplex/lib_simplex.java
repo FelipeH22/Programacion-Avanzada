@@ -55,13 +55,13 @@ public class lib_simplex {
                 line[i].add(s.get(i1));        
             line[i].add(resultados.get(i));
             h=h+3;
-            temp=temp+5;
+            temp=temp+3;
         }
         for(i=0;i<z.size();i++)
         {
             line[j].add(z.get(i));
         }
-        for(i=0;i<n;i++)
+        for(i=0;i<=n;i++)
         {
             line[j].add(0);
         }
