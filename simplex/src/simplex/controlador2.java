@@ -19,6 +19,7 @@ public class controlador2 implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(contador>0)
         {
+            t.z_temp.clear();
             t.z.clear();
             t.resultados.clear(); 
             t.ecuaciones.clear();  
