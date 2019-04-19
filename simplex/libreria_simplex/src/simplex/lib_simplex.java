@@ -17,7 +17,8 @@ public class lib_simplex {
         Integer s_matriz[][] = new Integer[j][j];
         //Iguala z a 0 
         for(i=0;i<z_temp.size();i++)
-            z.add(z_temp.get(i)*-1);        
+            z.add(z_temp.get(i)*-1);
+            z.add(0);
         //Añade variables s 
         for(i=0;i<j;i++)
         {
@@ -117,10 +118,29 @@ public class lib_simplex {
             line2[posicion].add(line[posicion].get(i)/pivote);            
         }
         ////////////////////////////////////
-        for(i=0;i<j;i++)
+        //DESDE AQUÍ EMPIEZA A LLENAR LAS FILAS EN ORDEN
+        for(i=0;i<=j;i++)
         {
-            line2[i].add(line[i].get(i));          
+            if(i!=posicion)
+            {    
+                for(i1=0;i1<line[i].size();i1++)
+                {
+                    line2[i].add(line[i].get(i1)-(line[i].get(z.indexOf(menor)+1)*line2[posicion].get(i1)));   
+                }
+            }
+              
         }
+        System.out.println("\n\n\n\n");
+        //MUESTRA TABLA 2
+        for(i=0;i<=j;i++)
+        {
+            for(i1=0;i1<line2[i].size();i1++)
+            {
+                System.out.print(line2[i].get(i1)+" ");
+            }
+            System.out.print("\n");
+        }
+        System.out.println(line[3].size());
         
     }
     public void calcula(int j, int n){
