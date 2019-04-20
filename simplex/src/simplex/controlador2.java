@@ -8,6 +8,8 @@ public class controlador2 implements ActionListener{
     vista v = new vista();
     lib_simplex t = new lib_simplex();
     int i,i1;
+    double resultado;
+    int maximo;
     int contador = 0;
 
     controlador2(vista v, lib_simplex t) {
@@ -30,7 +32,14 @@ public class controlador2 implements ActionListener{
         }
            
         guarda_datos();
-        t.calcula(controlador.j,controlador.n);
+        t.transforma_ecuaciones(controlador.j, controlador.n);
+        t.crea_tabla(controlador.j, controlador.n);
+        t.nueva_tabla(controlador.j, controlador.n);
+        maximo=t.obtener_max();
+        resultado=t.obtener_result();
+        
+        v.resultado.setText("Se necesitan "+ resultado + " para un máximo de "+maximo);
+        
         contador++;
         
     }
@@ -81,6 +90,8 @@ public class controlador2 implements ActionListener{
             if(i>=controlador.n*11 && i< controlador.n*12)
                 t.ecuacion[9].add(Double.valueOf(t.ecuaciones.get(i)));
         }
+
+        
     }
     
 

@@ -12,6 +12,8 @@ public class lib_simplex {
     ArrayList <Integer> s = new ArrayList<>();
     ArrayList <Double> line[];
     ArrayList <Double> line2[];
+    double resultado,max;
+    
     
     public void transforma_ecuaciones(int j, int n){
         Integer s_matriz[][] = new Integer[j][j];
@@ -131,6 +133,8 @@ public class lib_simplex {
               
         }
         System.out.println("\n\n\n\n");
+        
+        
         //MUESTRA TABLA 2
         for(i=0;i<=j;i++)
         {
@@ -147,5 +151,13 @@ public class lib_simplex {
         transforma_ecuaciones(j,n);
         crea_tabla(j,n);
         nueva_tabla(j,n);
+    }
+    public int obtener_max(){
+        max=line2[3].get(line2[3].size()-1);
+        return (int)max;
+    }
+    public double obtener_result(){
+        resultado=line2[1].get(line2[1].size()-1);
+        return resultado;
     }
 }

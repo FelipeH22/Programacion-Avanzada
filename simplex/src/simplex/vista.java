@@ -11,6 +11,7 @@ public class vista extends JFrame{
 	JLabel label = new JLabel();
         JLabel label2 = new JLabel();
         JLabel label3 = new JLabel();
+        JLabel resultado = new JLabel();
         JLabel var[];
 	JTextField num_variables = new JTextField();
         JTextField num_ecuaciones = new JTextField();
@@ -53,6 +54,8 @@ public class vista extends JFrame{
                 calcular.setBounds(10,420,100,20);
                 calcular.setText("Calcular");
                 panel.add(calcular);
+                resultado.setBounds(120,420,300,20);
+                panel.add(resultado);
 		
 	}
 	public void variables(int n) {
