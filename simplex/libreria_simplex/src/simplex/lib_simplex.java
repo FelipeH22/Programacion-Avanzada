@@ -7,18 +7,18 @@ public class lib_simplex {
     ArrayList <Integer> z = new ArrayList<>();
     ArrayList <Integer> z_temp = new ArrayList<>();
     ArrayList <Integer> resultados = new ArrayList<>();
-    ArrayList <Integer> ecuacion[];
+    ArrayList <Double> ecuacion[];
     ArrayList <Integer> ecuaciones = new ArrayList<>();
     ArrayList <Integer> s = new ArrayList<>();
-    ArrayList <Integer> line[];
-    ArrayList <Integer> line2[];
+    ArrayList <Double> line[];
+    ArrayList <Double> line2[];
     
     public void transforma_ecuaciones(int j, int n){
         Integer s_matriz[][] = new Integer[j][j];
         //Iguala z a 0 
         for(i=0;i<z_temp.size();i++)
             z.add(z_temp.get(i)*-1);
-            z.add(0);
+        z.add(0);
         //Añade variables s 
         for(i=0;i<j;i++)
         {
@@ -47,25 +47,25 @@ public class lib_simplex {
             line[i] = new ArrayList(); 
         for(i=0;i<j;i++)
         {
-            line[i].add(0);
+            line[i].add(Double.valueOf(0));
         }
-        line[j].add(0,1);
+        line[j].add(0,Double.valueOf(1));
         for(i=0;i<j;i++)
         {
             line[i].addAll(ecuacion[i]);
             for(i1=h;i1<temp;i1++)
-                line[i].add(s.get(i1));        
-            line[i].add(resultados.get(i));
+                line[i].add(Double.valueOf(s.get(i1)));        
+            line[i].add(Double.valueOf(resultados.get(i)));
             h=h+j;
             temp=temp+j;
         }
         for(i=0;i<z.size();i++)
         {
-            line[j].add(z.get(i));
+            line[j].add(Double.valueOf(z.get(i)));
         }
         for(i=0;i<=n;i++)
         {
-            line[j].add(0);
+            line[j].add(Double.valueOf(0));
         }
         
         for(i=0;i<=j;i++)
@@ -80,7 +80,7 @@ public class lib_simplex {
     }
     public void nueva_tabla(int j, int n){
         int menor=100;
-        int pivote,h,temporal;
+        double pivote,h,temporal;
         h=0;
         temporal=j;
         double temp[] = new double [j*n];
@@ -115,7 +115,7 @@ public class lib_simplex {
         ////////////////////////////////////
         for(i=0;i<line[posicion].size();i++)
         {
-            line2[posicion].add(line[posicion].get(i)/pivote);            
+            line2[posicion].add(Double.valueOf(line[posicion].get(i)/pivote));            
         }
         ////////////////////////////////////
         //DESDE AQUÍ EMPIEZA A LLENAR LAS FILAS EN ORDEN
@@ -125,7 +125,7 @@ public class lib_simplex {
             {    
                 for(i1=0;i1<line[i].size();i1++)
                 {
-                    line2[i].add(line[i].get(i1)-(line[i].get(z.indexOf(menor)+1)*line2[posicion].get(i1)));   
+                    line2[i].add(Double.valueOf(line[i].get(i1)-(line[i].get(z.indexOf(menor)+1)*line2[posicion].get(i1))));   
                 }
             }
               
