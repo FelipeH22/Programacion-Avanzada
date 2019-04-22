@@ -109,15 +109,17 @@ public class lib_simplex {
                 posicion = i;
             }
         }
-        pivote=line[posicion].get(z.lastIndexOf(menor));
+        pivote=line[posicion].get(z.lastIndexOf(menor)+1);
+        System.out.println(pivote);
         //Empieza a crear la nueva tabla
         line2 = new ArrayList[n+s.size()+2];
         for(i=0;i<n+s.size()+2;i++)
             line2[i] = new ArrayList();
+        int xd = z.indexOf(menor)+1;
         ////////////////////////////////////
         for(i=0;i<line[posicion].size();i++)
         {
-            line2[posicion].add(Double.valueOf(line[posicion].get(i)/pivote));            
+            line2[posicion].add(line[posicion].get(i)/pivote);            
         }
         ////////////////////////////////////
         //DESDE AQUÍ EMPIEZA A LLENAR LAS FILAS EN ORDEN
@@ -127,13 +129,12 @@ public class lib_simplex {
             {    
                 for(i1=0;i1<line[i].size();i1++)
                 {
-                    line2[i].add(Double.valueOf(line[i].get(i1)-(line[i].get(z.indexOf(menor)+1)*line2[posicion].get(i1))));   
+                    line2[i].add(line[i].get(i1)-(line[i].get(xd)*line2[posicion].get(i1)));   
                 }
             }
               
         }
         System.out.println("\n\n\n\n");
-        
         
         //MUESTRA TABLA 2
         for(i=0;i<=j;i++)
@@ -144,13 +145,18 @@ public class lib_simplex {
             }
             System.out.print("\n");
         }
-        System.out.println(line[3].size());
         
     }
     public void calcula(int j, int n){
+        int tamanio;
         transforma_ecuaciones(j,n);
         crea_tabla(j,n);
-        nueva_tabla(j,n);
+        int condicion=0;
+        while(condicion!=1)
+        {
+            
+        }
+        
     }
     public int obtener_max(){
         max=line2[3].get(line2[3].size()-1);
