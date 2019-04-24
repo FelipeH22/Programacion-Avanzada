@@ -13,10 +13,10 @@ Según la sustitución de Liskov las clases derivadas se comportan como la clase b
 
 	Una interfaz se crea así:
 
-		interface i {
+		''interface i {
 			int x=8;
 			void F();
-		}
+		}''
 
 	Se impleenta así:
 
