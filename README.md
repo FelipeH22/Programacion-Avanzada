@@ -6,4 +6,5 @@ Deben existir tres clases principales, donde vista se encargue de la interfaz de
 
 Principios S.O.L.I.D
 
-Cada clase se construye con una finalidad concreta
+Cada clase se construye con una finalidad concreta.
+Según la sustitución de Liskov las clases derivadas se comportan como la clase base, es decir que se acepta una asignacion de la clase base a las derivadas
