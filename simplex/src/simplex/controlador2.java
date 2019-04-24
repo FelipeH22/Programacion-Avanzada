@@ -34,7 +34,7 @@ public class controlador2 implements ActionListener{
         guarda_datos();
         t.transforma_ecuaciones(controlador.j, controlador.n);
         t.crea_tabla(controlador.j, controlador.n);
-        t.nueva_tabla(controlador.j, controlador.n);
+        t.calcula(controlador.j, controlador.n);
         maximo=t.obtener_max();
         resultado=t.obtener_result();
         

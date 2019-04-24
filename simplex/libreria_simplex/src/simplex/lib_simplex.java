@@ -148,16 +148,101 @@ public class lib_simplex {
         
     }
     public void calcula(int j, int n){
-        int tamanio;
-        transforma_ecuaciones(j,n);
-        crea_tabla(j,n);
         int condicion=0;
+        this.nueva_tabla(j,n);
         while(condicion!=1)
         {
+            int condicion_temp=0;
+            for(i=2;i<line2[j].size();i++)
+            {
+                if(line2[j].get(i)>=0&&line2[j].get(i-1)>=0)  
+                    condicion_temp++;
+                else
+                    condicion_temp--;
+                if(condicion_temp==(line2[j].size()-2))
+                    condicion=1;
+                else
+                    condicion=0;     
+            }
+            if(condicion==1)
+                break;
+            else
+                this.repite(j,n);
             
         }
         
     }
+    public void repite(int j, int n){
+        int menor=100;
+        double pivote,h,temporal;
+        h=0;
+        temporal=j;
+        double temp[] = new double [j*n];
+        int posicion = 0;
+        z.clear();
+        //for(i=0;i<)
+        //Determina el menor de z
+        for(i=0;i<z.size();i++)
+        {
+            if (z.get(i)<menor){
+                menor = z.get(i);
+                posicion = i;
+            }
+
+        }
+        //Determina el pivote
+        for(i=0;i<resultados.size();i++)
+        {
+            temp[i]=resultados.get(i)/line[i].get(z.indexOf(menor)+1);
+        }
+        int div_menor = 1000;
+        for(i=0;i<resultados.size();i++)
+        {
+            if (temp[i]<div_menor){
+                div_menor = (int) temp[i];
+                posicion = i;
+            }
+        }
+        pivote=line[posicion].get(z.lastIndexOf(menor)+1);
+        System.out.println(pivote);
+        //Empieza a crear la nueva tabla
+        line2 = new ArrayList[n+s.size()+2];
+        for(i=0;i<n+s.size()+2;i++)
+            line2[i] = new ArrayList();
+        int xd = z.indexOf(menor)+1;
+        ////////////////////////////////////
+        for(i=0;i<line[posicion].size();i++)
+        {
+            line2[posicion].add(line[posicion].get(i)/pivote);            
+        }
+        ////////////////////////////////////
+        //DESDE AQUÍ EMPIEZA A LLENAR LAS FILAS EN ORDEN
+        for(i=0;i<=j;i++)
+        {
+            if(i!=posicion)
+            {    
+                for(i1=0;i1<line[i].size();i1++)
+                {
+                    line2[i].add(line[i].get(i1)-(line[i].get(xd)*line2[posicion].get(i1)));   
+                }
+            }
+              
+        }
+        System.out.println("\n\n\n\n");
+        
+        //MUESTRA TABLA 2
+        for(i=0;i<=j;i++)
+        {
+            for(i1=0;i1<line2[i].size();i1++)
+            {
+                System.out.print(line2[i].get(i1)+" ");
+            }
+            System.out.print("\n");
+        }
+    }
+    
+    
+    
     public int obtener_max(){
         max=line2[3].get(line2[3].size()-1);
         return (int)max;
