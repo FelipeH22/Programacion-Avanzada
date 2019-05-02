@@ -15,7 +15,8 @@ import java.awt.event.ActionListener;
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(v.num_clases.getText());
+            v.scroll.updateUI();
+            v.cajas_texto(Integer.parseInt(v.num_clases.getText()));
         }   
 
             
