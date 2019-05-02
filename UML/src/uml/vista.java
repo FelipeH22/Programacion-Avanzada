@@ -28,7 +28,7 @@ public class vista extends JFrame{
         this.setVisible(true);
         //Panel
         this.add(scroll);
-        scroll.setBounds(0,0,500,500);
+        scroll.setBounds(0,0,485,500);
         //scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setViewportView(panel);

@@ -16,7 +16,10 @@ import java.awt.event.ActionListener;
         @Override
         public void actionPerformed(ActionEvent e) {
             v.scroll.updateUI();
+            v.panel.removeAll();
+            v.componentes();              
             v.cajas_texto(Integer.parseInt(v.num_clases.getText()));
+            v.scroll.updateUI();
         }   
 
             
