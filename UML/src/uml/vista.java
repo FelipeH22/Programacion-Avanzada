@@ -5,11 +5,19 @@ import javax.swing.*;
 import javax.swing.JFrame;
 
 public class vista extends JFrame{
+    int inicio=0;
+    int fin=2;
+    int i;
+    int j;
+    int y=140;
     JScrollPane scroll = new JScrollPane();
     JPanel panel = new JPanel();
     JLabel titulo = new JLabel();
     JLabel subtitulo = new JLabel();
     JTextArea cajas[];
+    JLabel indicativo_cajas[];
+    JTextArea herencias[];
+    JLabel indicativo_herencias[];
     JButton boton_anadir = new JButton();
     JButton crea_text = new JButton();
     JButton enviar_datos = new JButton();
@@ -22,7 +30,7 @@ public class vista extends JFrame{
         this.setTitle("UML");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        
+        this.setResizable(false);
     }    
     
     public void componentes(){
@@ -58,31 +66,52 @@ public class vista extends JFrame{
     }
     
     public void cajas_texto(int n){
-        int i;
-        int j;
-        int y=120;
-        int inicio=0;
-        int fin=2;
+        inicio=0;
+        fin=2;
+        i=inicio;
+        j=fin;
         int cont=0;
         cajas = new JTextArea[n*2];
+        indicativo_cajas = new JLabel[n*2];
         for(i=0;i<n*2;i++)
         {
             cajas[i] = new JTextArea();
+            indicativo_cajas[i] = new JLabel();
+            indicativo_cajas[i].setText("Nueva clase o interface");
         }
         for(j=0;j<n;j++)
         {           
             for(i=inicio;i<fin;i++)
             {
-                panel.add(cajas[i]);
+                if(i%2==0)
+                {
+                    cajas[i].setText("class");
+                }
+                indicativo_cajas[i].setBounds(10,y-40,150,30);
+                panel.add(indicativo_cajas[i]);
                 cajas[i].setBounds(10+(cont*130),y,120,70);
+                panel.add(cajas[i]);
                 cont++;
             }
             cont =0;
             inicio=inicio+2;
             fin=fin+2;
-            y=y+90;
+            y=y+120;
         }
-        panel.setPreferredSize(new Dimension(500,500+(cajas[i-1].getY()-400)));
+        panel.setPreferredSize(new Dimension(500,500+(cajas[i-1].getY()-380)));
+    }
+    public void herencias(int n){
+        herencias = new JTextArea[200];
+        herencias[n]= new JTextArea();
+        indicativo_herencias = new JLabel[200];
+        indicativo_herencias[n]= new JLabel(); 
+        indicativo_herencias[n].setText("Nueva herencia");
+        panel.add(indicativo_herencias[n]);
+        indicativo_herencias[n].setBounds(10,y-30,150,30);
+        herencias[n].setBounds(10,y,120,70);
+        panel.add(herencias[n]);
+        y=y+120;
+        panel.setPreferredSize(new Dimension(500,500+(herencias[n].getY()-380)));
     }
     
     public void oyentes(controlador c, controlador_fin cf, controlador2 c2){

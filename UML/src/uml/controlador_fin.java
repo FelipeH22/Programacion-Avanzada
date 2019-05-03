@@ -1,5 +1,6 @@
 package uml;
 
+import figuras.cuadros;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +16,7 @@ public class controlador_fin implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        v.dispose();
+        v.setVisible(false);
         c.componentes();
         /*v.panel.setVisible(false);
         v.add(c.panel);*/
