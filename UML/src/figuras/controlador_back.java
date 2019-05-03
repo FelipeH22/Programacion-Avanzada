@@ -5,18 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class controlador_back implements ActionListener{
-    cuadros c = new cuadros();
+    ventana ventana = new ventana();
     vista v = new vista();
     
-    public controlador_back(cuadros c){
-        this.c=c;
+    public controlador_back(ventana ventana){
+        this.ventana=ventana;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*c.setVisible(false);
+        ventana.frame.setVisible(false);
         v.setVisible(true);
-        v.componentes();    */
-        System.out.println("EJEcutando");
+        v.panel.removeAll();
+        v.componentes();
     }
 }

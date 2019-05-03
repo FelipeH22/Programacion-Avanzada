@@ -11,7 +11,7 @@ public class vista extends JFrame{
     int j;
     int y=140;
     JScrollPane scroll = new JScrollPane();
-    JPanel panel = new JPanel();
+    public JPanel panel = new JPanel();
     JLabel titulo = new JLabel();
     JLabel subtitulo = new JLabel();
     JTextArea cajas[];
