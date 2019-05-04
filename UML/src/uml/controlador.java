@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
     public class controlador implements ActionListener{
+        public int num_clases;
         vista v = new vista();
         modelo m = new modelo();
         public static int n,j;
@@ -15,7 +16,8 @@ import java.awt.event.ActionListener;
 
         @Override
         public void actionPerformed(ActionEvent e) {    
-            v.cajas_texto(Integer.parseInt(v.num_clases.getText()));
+            num_clases=Integer.parseInt(v.num_clases.getText());
+            v.cajas_texto(num_clases);
             v.scroll.updateUI();
         }   
 
