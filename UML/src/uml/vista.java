@@ -24,6 +24,7 @@ public class vista extends JFrame{
     JButton crea_herencia = new JButton();
     JLabel num = new JLabel();
     JTextField num_clases = new JTextField();
+    modelo m = new modelo();
     
     public vista(){
         this.setSize(600,600);
@@ -63,6 +64,7 @@ public class vista extends JFrame{
         enviar_datos.setBounds(420,50,130,20);
         enviar_datos.setText("Enviar datos");
         panel.add(enviar_datos);
+        oyentes(new controlador(this,m), new controlador_fin(this,m), new controlador2(this,m));
     }
     
     public void cajas_texto(int n){
