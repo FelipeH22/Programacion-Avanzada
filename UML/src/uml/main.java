@@ -7,7 +7,7 @@ public class main {
         modelo m = new modelo();
         controlador c = new controlador(v,m);
         controlador_fin cf = new controlador_fin(v,m);
-        controlador2 c2 = new controlador2(v,m);        
+        controlador2 c2 = new controlador2(v,m);
         v.componentes();
         v.oyentes(c,cf,c2);
     }

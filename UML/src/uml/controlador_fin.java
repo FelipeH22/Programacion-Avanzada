@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 public class controlador_fin implements ActionListener{
     vista v = new vista();
     modelo m = new modelo();
-    ventana ventana = new ventana();
-    cuadros cua = new cuadros();
-    controlador_back cb = new controlador_back(ventana);
+    cuadros c = new cuadros();
     
     public controlador_fin(vista v, modelo m){
         this.v=v;
@@ -19,7 +17,10 @@ public class controlador_fin implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         v.setVisible(false);
-        ventana.componentes();      
-        ventana.oyentes(cb);
+        c.componentes();
+        c.oyentes(new controlador_back(c));
+        /*v.panel.setVisible(false);
+        v.add(c.panel);*/
+        
     }   
 }
