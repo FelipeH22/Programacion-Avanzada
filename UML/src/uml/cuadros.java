@@ -10,7 +10,6 @@ public class cuadros extends JPanel{
     public int num_cuadros;
     int i;
     int j;
-    int y=70;
     public ArrayList <String> clases = new ArrayList<>();
     public ArrayList <String> atributos = new ArrayList<>();
     String clase_actual;
@@ -37,15 +36,17 @@ public class cuadros extends JPanel{
     }
     @Override
     public void paint(Graphics g) {
+        int x=10;
+        int y=70;
         Graphics2D g2d = (Graphics2D) g;	
-        //for(i=1;i<=3;i++)
-        //{
-            g2d.drawRect(10, y, 100, 20);
-            g2d.drawString(controlador_fin.clase.get(0), 15,y+12);
-            g2d.drawString(controlador_fin.atributos.get(0),15,y+35);
-            g2d.drawRect(10, y+20, 100, 80);
-            //y=y+90;
-        //}
+        for(i=0;i<controlador_fin.num_clases;i++)
+        {
+            g2d.drawRect(x, y, 100, 20);
+            g2d.drawString(controlador_fin.clase.get(i), x+5,y+12);
+            g2d.drawString(controlador_fin.atributos.get(i),x+5,y+35);
+            g2d.drawRect(x, y+20, 100, 80);
+            x=x+110;
+        }
             
     }
     

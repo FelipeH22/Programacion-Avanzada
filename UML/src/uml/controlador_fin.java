@@ -3,8 +3,10 @@ package uml;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class controlador_fin implements ActionListener{
+    public static int num_clases; 
     vista v = new vista();
     modelo m = new modelo();
     cuadros c = new cuadros();
@@ -18,6 +20,7 @@ public class controlador_fin implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {   
+        num_clases= Integer.parseInt(v.num_clases.getText());
         texto();
         v.setVisible(false);
         c.componentes();
@@ -25,17 +28,20 @@ public class controlador_fin implements ActionListener{
     }   
     public void texto(){
         int i;
-        int num_clases;
-        num_clases= Integer.parseInt(v.num_clases.getText());
-        String[] arrOfStr;
-        arrOfStr = v.cajas[1].getText().split("\n");
+        
+        
         for(i=0;i<num_clases*2;i++)
         {
             if(i%2==0)
                 clase.add(v.cajas[i].getText());
             else
-                atributos.add(v.cajas[i].getText());
+            {
+                String[] arrOfStr;
+                arrOfStr = v.cajas[i].getText().split("\n");
+                atributos.addAll(Arrays.asList(arrOfStr));
+            }
+                
         }
-        System.out.println(clase.size());
+        System.out.println(atributos.size());
     }
 }
