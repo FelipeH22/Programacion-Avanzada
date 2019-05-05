@@ -10,11 +10,12 @@ import uml.vista;
 
 public class controlador_fin implements ActionListener{
     public static int num_clases; 
+    public static ArrayList<Integer> numero_atributos = new ArrayList<>();
     vista v = new vista();
     modelo m = new modelo();
     cuadros c = new cuadros();
     controlador c1 = new controlador(v,m);
-    public static ArrayList <String> clase = new ArrayList<>();
+    public static ArrayList <String> clases = new ArrayList<>();
     public static ArrayList <String> atributos = new ArrayList<>();
     public controlador_fin(vista v, modelo m){
         this.v=v;
@@ -23,6 +24,8 @@ public class controlador_fin implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {   
+        clases.clear();
+        atributos.clear();
         num_clases= Integer.parseInt(v.num_clases.getText());
         texto();
         m.determina_privacidad();
@@ -37,15 +40,17 @@ public class controlador_fin implements ActionListener{
         for(i=0;i<num_clases*2;i++)
         {
             if(i%2==0)
-                clase.add(v.cajas[i].getText());
+                clases.add(v.cajas[i].getText());
             else
             {
                 String[] arrOfStr;
                 arrOfStr = v.cajas[i].getText().split("\n");
+                numero_atributos.add(arrOfStr.length);
                 atributos.addAll(Arrays.asList(arrOfStr));
+                //System.out.println(atributos.get(1));
+                
             }
                 
         }
-        System.out.println(atributos.size());
     }
 }

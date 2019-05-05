@@ -47,14 +47,32 @@ public class cuadros extends JPanel{
     public void paint(Graphics g) {
         int x=10;
         int y=70;
+        int aux;
+        int temp=0;
+        int contador=0;
         Graphics2D g2d = (Graphics2D) g;	
         this.add(back);
         for(i=0;i<controlador_fin.num_clases;i++)
         {
             g2d.drawRect(x, y, 100, 20);
-            g2d.drawString(controlador_fin.clase.get(i), x+5,y+12);
+            g2d.drawString(controlador_fin.clases.get(i), x+5,y+12);
             g2d.drawRect(x, y+20, 100, 20);
-            g2d.drawString(controlador_fin.atributos.get(i),x+5,y+55);
+            System.out.println(contador);
+            if(controladores.controlador_fin.numero_atributos.get(i)>1)
+            {
+                aux=55;
+                for(j=0;j<controladores.controlador_fin.numero_atributos.get(i);j++)
+                {
+                    g2d.drawString(controlador_fin.atributos.get(temp),x+5,y+aux);
+                    aux=aux+20;
+                    temp++;
+                }             
+            }
+            else
+            {
+               g2d.drawString(controlador_fin.atributos.get(temp),x+5,y+55); 
+               temp++;
+            }                 
             g2d.drawRect(x, y+40, 100, 80);
             x=x+110;
         }
