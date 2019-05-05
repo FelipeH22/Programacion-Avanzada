@@ -11,8 +11,8 @@ import javax.swing.*;
 
 public class cuadros extends JPanel{
     public int num_cuadros;
-    int i;
-    int j;
+    int i=0;
+    int j=0;
     public ArrayList <String> clases = new ArrayList<>();
     public ArrayList <String> atributos = new ArrayList<>();
     String signo;
@@ -47,6 +47,7 @@ public class cuadros extends JPanel{
     public void paint(Graphics g) {
         int x=10;
         int y=70;
+        j=0;
         int aux;
         int temp=0;
         int contador=0;
@@ -57,7 +58,11 @@ public class cuadros extends JPanel{
             g2d.drawRect(x, y, 100, 20);
             g2d.drawString(controlador_fin.clases.get(i), x+5,y+12);
             g2d.drawRect(x, y+20, 100, 20);
-            System.out.println(contador);
+            for(j=j;j<controladores.controlador_fin.intermedio.size();j++)
+            {
+                g2d.drawString(controlador_fin.intermedio.get(j), x+5,y+32);
+            }
+                
             if(controladores.controlador_fin.numero_atributos.get(i)>1)
             {
                 aux=55;
@@ -76,6 +81,8 @@ public class cuadros extends JPanel{
             g2d.drawRect(x, y+40, 100, 80);
             x=x+110;
         }
+        /////////////////////////////////////////////////////////////////////////////////////////
+        
         this.updateUI();
         this.setPreferredSize(new Dimension(x,y));
         super.paintComponents(g2d);       

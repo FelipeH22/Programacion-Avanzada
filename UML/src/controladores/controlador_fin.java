@@ -17,6 +17,7 @@ public class controlador_fin implements ActionListener{
     controlador c1 = new controlador(v,m);
     public static ArrayList <String> clases = new ArrayList<>();
     public static ArrayList <String> atributos = new ArrayList<>();
+    public static ArrayList <String> intermedio = new ArrayList<>();
     public controlador_fin(vista v, modelo m){
         this.v=v;
         this.m=m;
@@ -29,6 +30,7 @@ public class controlador_fin implements ActionListener{
         num_clases= Integer.parseInt(v.num_clases.getText());
         texto();
         m.determina_privacidad();
+        m.evalua_instancias();
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
@@ -40,15 +42,17 @@ public class controlador_fin implements ActionListener{
         for(i=0;i<num_clases*2;i++)
         {
             if(i%2==0)
-                clases.add(v.cajas[i].getText());
+            {
+                String[] arrOfStr2;
+                arrOfStr2 = v.cajas[i].getText().split("\n");
+                clases.addAll(Arrays.asList(arrOfStr2)); 
+            }                
             else
             {
                 String[] arrOfStr;
                 arrOfStr = v.cajas[i].getText().split("\n");
                 numero_atributos.add(arrOfStr.length);
-                atributos.addAll(Arrays.asList(arrOfStr));
-                //System.out.println(atributos.get(1));
-                
+                atributos.addAll(Arrays.asList(arrOfStr));               
             }
                 
         }
