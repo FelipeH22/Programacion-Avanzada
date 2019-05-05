@@ -1,6 +1,5 @@
 package controladores;
 
-import controladores.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ public class controlador_fin implements ActionListener{
     public void actionPerformed(ActionEvent e) {   
         num_clases= Integer.parseInt(v.num_clases.getText());
         texto();
+        m.determina_privacidad();
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
