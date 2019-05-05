@@ -1,9 +1,13 @@
-package uml;
+package controladores;
 
+import controladores.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import uml.cuadros;
+import uml.modelo;
+import uml.vista;
 
 public class controlador_fin implements ActionListener{
     public static int num_clases; 

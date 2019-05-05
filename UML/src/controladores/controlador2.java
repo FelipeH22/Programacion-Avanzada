@@ -1,7 +1,9 @@
-package uml;
+package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import uml.modelo;
+import uml.vista;
 
 public class controlador2 implements ActionListener{
     vista v = new vista();

@@ -1,5 +1,7 @@
 package uml;
 
+import controladores.controlador_back;
+import controladores.controlador_fin;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,9 +17,9 @@ public class cuadros extends JPanel{
     public ArrayList <String> atributos = new ArrayList<>();
     String signo;
 
-    JFrame frame = new JFrame();
-    JScrollPane scroll = new JScrollPane();
-    JButton back = new JButton();
+    public JFrame frame = new JFrame();
+    public JScrollPane scroll = new JScrollPane();
+    public JButton back = new JButton();
     public void componentes(){
         
         frame.setSize(600,600);

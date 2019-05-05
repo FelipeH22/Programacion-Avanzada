@@ -1,8 +1,10 @@
-package uml;
+package controladores;
 
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import uml.cuadros;
+import uml.vista;
 
 public class controlador_back implements ActionListener{
     cuadros c = new cuadros();

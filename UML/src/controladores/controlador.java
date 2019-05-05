@@ -1,7 +1,8 @@
-package uml;
+package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import uml.*;
 
     public class controlador implements ActionListener{
         public int num_clases;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
         modelo m = new modelo();
         public static int n,j;
 
-        controlador(vista v, modelo m) {
+        public controlador(vista v, modelo m) {
             this.v=v;
             this.m=m;
         }

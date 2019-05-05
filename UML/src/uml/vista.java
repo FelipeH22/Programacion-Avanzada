@@ -1,5 +1,8 @@
 package uml;
 
+import controladores.controlador_fin;
+import controladores.controlador2;
+import controladores.controlador;
 import java.awt.Dimension;
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -10,20 +13,20 @@ public class vista extends JFrame{
     int i;
     int j;
     int y=140;
-    JScrollPane scroll = new JScrollPane();
-    JPanel panel = new JPanel();
+    public JScrollPane scroll = new JScrollPane();
+    public JPanel panel = new JPanel();
     JLabel titulo = new JLabel();
     JLabel subtitulo = new JLabel();
-    JTextArea cajas[];
+    public JTextArea cajas[];
     JLabel indicativo_cajas[];
-    JTextArea herencias[];
+    public JTextArea herencias[];
     JLabel indicativo_herencias[];
     JButton boton_anadir = new JButton();
     JButton crea_text = new JButton();
     JButton enviar_datos = new JButton();
     JButton crea_herencia = new JButton();
     JLabel num = new JLabel();
-    JTextField num_clases = new JTextField();
+    public JTextField num_clases = new JTextField();
     modelo m = new modelo();
     
     public vista(){
