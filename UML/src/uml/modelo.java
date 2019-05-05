@@ -1,12 +1,12 @@
 package uml;
 
-public class modelo implements modelo_interface{
+import controladores.controlador_fin;
 
-    int i;
+public class modelo extends modelo_abstract implements modelo_interface{
+
     
     @Override
     public void determina_privacidad() {
-        String temp;
         for(i=0;i<controladores.controlador_fin.atributos.size();i++)
         {
             if(controladores.controlador_fin.atributos.get(i).contains("public"))
@@ -29,7 +29,6 @@ public class modelo implements modelo_interface{
             }                
         }
         /////Con las Clases
-        String temp2;
         for(i=0;i<controladores.controlador_fin.clases.size();i++)
         {
             if(controladores.controlador_fin.clases.get(i).contains("public"))
@@ -60,16 +59,39 @@ public class modelo implements modelo_interface{
 
     @Override
     public void evalua_instancias() {
-        String temp3;
         for(i=0;i<controladores.controlador_fin.clases.size();i++)
         {
+            for(j=0;j<controlador_fin.num_clases;j++)
+                controlador_fin.intermedio.add(i, "");
             if(controladores.controlador_fin.clases.get(i).contains("new"))
             {
                 temp3=controladores.controlador_fin.clases.get(i);
-                controladores.controlador_fin.intermedio.add(temp3);
+                controladores.controlador_fin.intermedio.add(i,temp3);
                 controladores.controlador_fin.clases.remove(i);
             }                    
         }
+    }
+    
+    @Override
+    public void evalua_composicion(){
+        for(i=0;i<controlador_fin.intermedio.size();i++)
+        {
+            if(controlador_fin.intermedio.get(i).contains("[]"))
+            {
+                agregacion=true;
+                composicion=false;
+            }
+            else
+            {
+                agregacion=false;
+                composicion=true;
+            }
+        }
+        for(i=0;i<controlador_fin.intermedio.size();i++)
+        {
+            System.out.println(controlador_fin.intermedio.get(i));
+        }
+        
     }
     
 }

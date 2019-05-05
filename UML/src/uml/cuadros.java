@@ -49,6 +49,7 @@ public class cuadros extends JPanel{
         int y=70;
         j=0;
         int aux;
+        int aux2;
         int temp=0;
         int contador=0;
         Graphics2D g2d = (Graphics2D) g;	
@@ -58,9 +59,11 @@ public class cuadros extends JPanel{
             g2d.drawRect(x, y, 100, 20);
             g2d.drawString(controlador_fin.clases.get(i), x+5,y+12);
             g2d.drawRect(x, y+20, 100, 20);
+            aux2=x-100;
             for(j=j;j<controladores.controlador_fin.intermedio.size();j++)
             {
-                g2d.drawString(controlador_fin.intermedio.get(j), x+5,y+32);
+                g2d.drawString(controlador_fin.intermedio.get(j), aux2,y+32);
+                aux2=aux2+110;
             }
                 
             if(controladores.controlador_fin.numero_atributos.get(i)>1)

@@ -31,6 +31,9 @@ public class controlador_fin implements ActionListener{
         texto();
         m.determina_privacidad();
         m.evalua_instancias();
+        m.evalua_composicion();
+        System.out.println(m.agregacion);
+        System.out.println(m.composicion);
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  

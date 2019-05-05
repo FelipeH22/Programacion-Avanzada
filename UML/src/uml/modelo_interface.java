@@ -4,4 +4,5 @@ public interface modelo_interface {
     public abstract void determina_privacidad();
     public abstract void evalua_herencia();
     public abstract void evalua_instancias();
+    public abstract void evalua_composicion();
 }
