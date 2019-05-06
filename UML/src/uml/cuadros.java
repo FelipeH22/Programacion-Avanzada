@@ -93,6 +93,8 @@ public class cuadros extends JPanel{
         //Pintar composición
         x=10;
         y=200;
+        temp=0;
+        j=0;
         if(composicion==true)
         {
             g2d.setColor(Color.RED);
