@@ -4,6 +4,25 @@ import controladores.controlador_fin;
 import java.util.ArrayList;
 
 public class modelo extends modelo_abstract implements modelo_interface{
+    
+    @Override
+    public void llena_arrays(){
+        for(i=0;i<controlador_fin.num_clases;i++)
+        {
+            for(j=0;j<controlador_fin.clases[i].size();j++)
+            {
+                if(!controlador_fin.clases[i].get(j).contains("new")&& !controlador_fin.clases[i].get(j).contains("class"))
+                {
+                    controlador_fin.atributos[i].add(controlador_fin.clases[i].get(j));
+                }
+                if(controlador_fin.clases[i].get(j).contains("new"))
+                {
+                    controlador_fin.instancias[i].add(controlador_fin.clases[i].get(j));
+                }
+                
+            }
+        }
+    }
    
     @Override
     public void determina_privacidad(){

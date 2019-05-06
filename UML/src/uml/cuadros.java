@@ -11,7 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.*;
 
 public class cuadros extends JPanel{
-    int x,y;
+    int x=10;
+    int y=70;
+    int y_texto;
+    int x_texto;
+    int i,j,h;
     public static boolean composicion = false;
     public static boolean agregacion = false;
 
@@ -43,25 +47,40 @@ public class cuadros extends JPanel{
     
     @Override
     public void paint(Graphics g) {
+        x=10;
+        this.add(back);
         Graphics2D g2d = (Graphics2D) g;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //paint_composicion(g2d);
+        paint_clases(g2d);
         this.updateUI();
         this.setPreferredSize(new Dimension(x,y));
         super.paintComponents(g2d);       
-    }    
+    }
+
+    public void paint_clases(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        for(i=0;i<controlador_fin.num_clases;i++)
+        {
+            x_texto=x+4;
+            y=70;
+            g2d.drawRect(x, y=y+20, 100, 20);
+            y_texto=y+12;
+            g2d.drawString(controlador_fin.clases[i].get(0), x_texto, y_texto);
+            g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[i].size()*15+10);   
+            y_texto=y+12;
+            for(j=0;j<controlador_fin.instancias[i].size();j++)
+            {
+                g2d.drawString(controlador_fin.instancias[i].get(j), x_texto, y_texto);
+                y_texto=y_texto+10;
+            }
+            g2d.drawRect(x, y=y+controlador_fin.instancias[i].size()*15+10 , 100,controlador_fin.atributos[i].size()*15+10);
+            y_texto=y+12;
+            for(j=0;j<controlador_fin.atributos[i].size();j++)
+            {
+                g2d.drawString(controlador_fin.atributos[i].get(j), x_texto, y_texto);
+                y_texto=y_texto+10;
+            }
+            x=x+110;
+        }
+    }
 	
 }

@@ -18,6 +18,8 @@ public class controlador_fin implements ActionListener{
     cuadros c = new cuadros();
     controlador c1 = new controlador(v,m);
     public static ArrayList <String> clases[];
+    public static ArrayList <String> atributos[];
+    public static ArrayList <String> instancias[];    
     public static ArrayList <String> compo = new ArrayList<>();
     public static ArrayList <String> agrega = new ArrayList<>();
     public controlador_fin(vista v, modelo m){
@@ -31,14 +33,19 @@ public class controlador_fin implements ActionListener{
     public void actionPerformed(ActionEvent e) {  
         num_clases= Integer.parseInt(v.num_clases.getText());
         this.clases = new ArrayList[this.num_clases];
+        this.atributos = new ArrayList[num_clases];
+        this.instancias = new ArrayList[num_clases];
         for(i=0;i<num_clases;i++)
         {
             clases[i] = new ArrayList();
+            atributos[i] = new ArrayList();
+            instancias[i] = new ArrayList();
         }       
         texto();
         m.determina_privacidad();
         m.evalua_instancias();
         m.evalua_composicion();
+        m.llena_arrays();
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
