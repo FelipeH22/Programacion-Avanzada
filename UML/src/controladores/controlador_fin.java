@@ -18,6 +18,8 @@ public class controlador_fin implements ActionListener{
     public static ArrayList <String> clases = new ArrayList<>();
     public static ArrayList <String> atributos = new ArrayList<>();
     public static ArrayList <String> intermedio = new ArrayList<>();
+    public static ArrayList <String> compo = new ArrayList<>();
+    public static ArrayList <String> agrega = new ArrayList<>();
     public controlador_fin(vista v, modelo m){
         this.v=v;
         this.m=m;
@@ -32,8 +34,8 @@ public class controlador_fin implements ActionListener{
         m.determina_privacidad();
         m.evalua_instancias();
         m.evalua_composicion();
-        System.out.println(m.agregacion);
-        System.out.println(m.composicion);
+        System.out.println(c.agregacion);
+        System.out.println(c.composicion);
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
