@@ -17,11 +17,7 @@ public class controlador_back implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         controlador_fin.agrega.clear();
-        controlador_fin.atributos.clear();
-        controlador_fin.clases.clear();
         controlador_fin.compo.clear();
-        controlador_fin.intermedio.clear();
-        controlador_fin.numero_atributos.clear();
         c.frame.setVisible(false);
         v.setVisible(true);
         v.componentes();  

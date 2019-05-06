@@ -1,61 +1,40 @@
 package uml;
 
 import controladores.controlador_fin;
+import java.util.ArrayList;
 
 public class modelo extends modelo_abstract implements modelo_interface{
-
-    
+   
     @Override
-    public void determina_privacidad() {
-        for(i=0;i<controladores.controlador_fin.atributos.size();i++)
+    public void determina_privacidad(){
+        for(i=0;i<controlador_fin.num_clases;i++)
         {
-            if(controladores.controlador_fin.atributos.get(i).contains("public"))
+            for(j=0;j<controlador_fin.clases[i].size();j++)
             {
-                temp=controladores.controlador_fin.atributos.get(i);
-                temp = temp.replace("public","+ ");
-                temp=temp.trim();
-                controladores.controlador_fin.atributos.set(i, temp);
+                if(controladores.controlador_fin.clases[i].get(j).contains("public"))
+                {
+                    temp = controladores.controlador_fin.clases[i].get(j);
+                    temp = temp.replace("public","+ ");
+                    temp = temp.trim();
+                    controladores.controlador_fin.clases[i].set(j, temp);
+                }
+                if(controladores.controlador_fin.clases[i].get(j).contains("private"))
+                {
+                    temp = controladores.controlador_fin.clases[i].get(j);
+                    temp = temp.replace("private","- ");
+                    temp = temp.trim();
+                    controladores.controlador_fin.clases[i].set(j, temp);
+                }
+                if(controladores.controlador_fin.clases[i].get(j).contains("protected"))
+                {
+                    temp = controladores.controlador_fin.clases[i].get(j);
+                    temp = temp.replace("protected","# ");
+                    temp = temp.trim();
+                    controladores.controlador_fin.clases[i].set(j, temp);
+                }                
             }
-            if(controladores.controlador_fin.atributos.get(i).contains("private"))
-            {
-                temp=controladores.controlador_fin.atributos.get(i);
-                temp = temp.replace("private","- ");
-                temp=temp.trim();
-                controladores.controlador_fin.atributos.set(i, temp);
-            }
-            if(controladores.controlador_fin.atributos.get(i).contains("protected"))
-            {
-                temp=controladores.controlador_fin.atributos.get(i);
-                temp = temp.replace("protected","# ");
-                temp=temp.trim();
-                controladores.controlador_fin.atributos.set(i, temp);
-            }                
         }
-        /////Con las Clases
-        for(i=0;i<controladores.controlador_fin.clases.size();i++)
-        {
-            if(controladores.controlador_fin.clases.get(i).contains("public"))
-            {
-                temp=controladores.controlador_fin.clases.get(i);
-                temp = temp.replace("public","+ ");
-                temp=temp.trim();
-                controladores.controlador_fin.clases.set(i, temp);
-            }
-            if(controladores.controlador_fin.clases.get(i).contains("private"))
-            {
-                temp=controladores.controlador_fin.clases.get(i);
-                temp = temp.replace("private","- ");
-                temp=temp.trim();
-                controladores.controlador_fin.clases.set(i, temp);
-            }
-            if(controladores.controlador_fin.clases.get(i).contains("protected"))
-            {
-                temp=controladores.controlador_fin.clases.get(i);
-                temp = temp.replace("protected","# ");
-                temp=temp.trim();
-                controladores.controlador_fin.clases.set(i, temp);
-            }                
-        }
+        
     }
 
     @Override
@@ -65,43 +44,54 @@ public class modelo extends modelo_abstract implements modelo_interface{
 
     @Override
     public void evalua_instancias() {
-        for(i=0;i<controladores.controlador_fin.clases.size();i++)
+        for(i=0;i<controlador_fin.num_clases;i++)
         {
-            for(j=0;j<controlador_fin.num_clases;j++)
-                controlador_fin.intermedio.add(i, "");
-            if(controladores.controlador_fin.clases.get(i).contains("new"))
-            {
-                temp3=controladores.controlador_fin.clases.get(i);
-                temp3=temp3.trim();
-                controladores.controlador_fin.intermedio.add(i,temp3);
-                controladores.controlador_fin.clases.remove(i);
-            }                    
+            for(j=0;j<controladores.controlador_fin.clases[i].size();j++)
+            {                
+                if(controladores.controlador_fin.clases[i].get(j).contains("new"))
+                {
+                    temp3 = controladores.controlador_fin.clases[i].get(j);
+                    temp3 = temp3.trim();
+                    controladores.controlador_fin.clases[i].remove(j);
+                    controladores.controlador_fin.clases[i].add(j,temp3);                   
+                }                    
+            }
         }
+        
     }
     
     @Override
     public void evalua_composicion(){
-        for(i=0;i<controlador_fin.intermedio.size();i++)
+        for(i=0;i<controlador_fin.num_clases;i++)
         {
-            if(controlador_fin.intermedio.get(i).contains("[]")&&controlador_fin.intermedio.get(i).contains("new"))
+            for(j=0;j<controlador_fin.clases[i].size();j++)
             {
-                /*temp1=controlador_fin.intermedio.get(i);
-                temp1=temp1.replace("new", "class");*/
-                agregacion=true;
-                composicion=false;
-            }
-            if(controlador_fin.intermedio.get(i).contains("new")&& !controlador_fin.intermedio.get(i).contains("[]"))
-            {
-                temp1=controlador_fin.intermedio.get(i);
-                temp1=temp1.replace("new", "class");
-                temp1=temp1.replace("+","");
-                temp1=temp1.trim();
-                controlador_fin.compo.add(temp1);
-                agregacion=false;
-                composicion=true;
+                if(controlador_fin.clases[i].get(j).contains("[]")&&controlador_fin.clases[i].get(j).contains("new"))
+                {
+                    agregacion=true;
+                    composicion=false;
+                }
+                if(controlador_fin.clases[i].get(j).contains("new")&& !controlador_fin.clases[i].get(j).contains("[]"))
+                {
+                    temp1 = controlador_fin.clases[i].get(j);
+                    temp1 = temp1.replace("new", "class");
+                    temp1 = temp1.replace("+","");
+                    temp1 = temp1.trim();
+                    controlador_fin.compo.add(temp1);
+                    agregacion=false;
+                    composicion=true;
+                }
             }
         }
+        
         cuadros.agregacion=this.agregacion;
         cuadros.composicion=this.composicion;
+        for(i=0;i<controlador_fin.num_clases;i++)
+        {
+            for(j=0;j<controlador_fin.clases[i].size();j++)
+            {
+                System.out.println(controlador_fin.clases[i].get(j));
+            }
+        }
     }    
 }

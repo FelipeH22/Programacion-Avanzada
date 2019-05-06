@@ -3,6 +3,7 @@ package uml;
 public abstract class modelo_abstract {
     int i;
     int j;
+    int h;
     String temp;
     String temp1;
     String temp2;
