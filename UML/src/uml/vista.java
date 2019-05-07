@@ -117,6 +117,7 @@ public class vista extends JFrame{
         panel.add(herencias[n]);
         y=y+120;
         panel.setPreferredSize(new Dimension(500,500+(herencias[n].getY()-380)));
+        controlador_fin.n=n;
     }
     
     public void oyentes(controlador c, controlador_fin cf, controlador2 c2){

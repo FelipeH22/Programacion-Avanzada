@@ -4,12 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import uml.cuadros;
 import uml.modelo;
 import uml.vista;
 
 public class controlador_fin implements ActionListener{
     int i,j,h;
+    public static int n;
     int n_atributos,n_clases;
     public static int num_clases; 
     public static ArrayList<Integer> numero_atributos = new ArrayList<>();
@@ -20,8 +23,9 @@ public class controlador_fin implements ActionListener{
     public static ArrayList <String> clases[];
     public static ArrayList <String> atributos[];
     public static ArrayList <String> instancias[];    
-    public static ArrayList <String> compo = new ArrayList<>();
-    public static ArrayList <String> agrega = new ArrayList<>();
+    public static ArrayList <String> herencias = new ArrayList<>();
+    public static Map<String, String> compos = new HashMap<String, String>();
+    public static Map<String, String> agrega = new HashMap<String, String>();
     public controlador_fin(vista v, modelo m){
         this.v=v;
         this.m=m;
@@ -32,9 +36,9 @@ public class controlador_fin implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {  
         num_clases= Integer.parseInt(v.num_clases.getText());
-        this.clases = new ArrayList[this.num_clases];
-        this.atributos = new ArrayList[num_clases];
-        this.instancias = new ArrayList[num_clases];
+        clases = new ArrayList[num_clases];
+        atributos = new ArrayList[num_clases];
+        instancias = new ArrayList[num_clases];
         for(i=0;i<num_clases;i++)
         {
             clases[i] = new ArrayList();
@@ -42,10 +46,11 @@ public class controlador_fin implements ActionListener{
             instancias[i] = new ArrayList();
         }       
         texto();
+        leer_herencias();
         m.determina_privacidad();
         m.evalua_instancias();
-        m.evalua_composicion();
         m.llena_arrays();
+        m.evalua_composicion();        
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
@@ -68,5 +73,8 @@ public class controlador_fin implements ActionListener{
             n_atributos=n_atributos+2;
                       
         }        
+    }
+    
+    public void leer_herencias(){
     }
 }

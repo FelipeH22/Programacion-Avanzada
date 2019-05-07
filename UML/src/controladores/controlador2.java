@@ -8,7 +8,7 @@ import uml.vista;
 public class controlador2 implements ActionListener{
     vista v = new vista();
     modelo m = new modelo();
-    int contador=0;
+    public static int contador=0;
     
     public controlador2(vista v, modelo m){
         this.v=v;

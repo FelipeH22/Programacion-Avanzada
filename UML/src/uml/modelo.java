@@ -1,7 +1,6 @@
 package uml;
 
 import controladores.controlador_fin;
-import java.util.ArrayList;
 
 public class modelo extends modelo_abstract implements modelo_interface{
     
@@ -87,6 +86,14 @@ public class modelo extends modelo_abstract implements modelo_interface{
             {
                 if(controlador_fin.clases[i].get(j).contains("[]")&&controlador_fin.clases[i].get(j).contains("new"))
                 {
+                    temp3 = controlador_fin.clases[i].get(j);
+                    temp3 = temp3.replace("new", "class");
+                    temp3 = temp3.replace("+","");
+                    temp3 = temp3.replace("-","");
+                    temp3 = temp3.replace("#","");
+                    temp3 = temp3.trim();
+                    controlador_fin.agrega.put(controlador_fin.clases[i].get(0), temp3);
+                    uml.cuadros.clase1_agrega=i;
                     agregacion=true;
                     composicion=false;
                 }
@@ -95,22 +102,31 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp1 = controlador_fin.clases[i].get(j);
                     temp1 = temp1.replace("new", "class");
                     temp1 = temp1.replace("+","");
+                    temp1 = temp1.replace("-","");
+                    temp1 = temp1.replace("#","");
                     temp1 = temp1.trim();
-                    controlador_fin.compo.add(temp1);
+                    controlador_fin.compos.put(controlador_fin.clases[i].get(0), temp1);
+                    uml.cuadros.clase1_compo=i;
                     agregacion=false;
                     composicion=true;
                 }
             }
         }
-        
-        cuadros.agregacion=this.agregacion;
-        cuadros.composicion=this.composicion;
-        for(i=0;i<controlador_fin.num_clases;i++)
+        for(h=0;h<controlador_fin.num_clases;h++)
         {
-            for(j=0;j<controlador_fin.clases[i].size();j++)
+            if(controlador_fin.clases[h].get(0).equals(temp1))
             {
-                System.out.println(controlador_fin.clases[i].get(j));
+                uml.cuadros.clase2_compo=h;
             }
         }
+        for(h=0;h<controlador_fin.num_clases;h++)
+        {
+            if(controlador_fin.clases[h].get(0).equals(temp3))
+            {
+                uml.cuadros.clase2_agrega=h;
+            }
+        }        
+        cuadros.agregacion=this.agregacion;
+        cuadros.composicion=this.composicion;
     }    
 }
