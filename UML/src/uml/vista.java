@@ -19,12 +19,12 @@ public class vista extends JFrame{
     JLabel subtitulo = new JLabel();
     public JTextArea cajas[];
     JLabel indicativo_cajas[];
-    public JTextArea herencias[];
-    JLabel indicativo_herencias[];
+    public JTextArea herencias = new JTextArea();
+    JLabel indicativo_herencias = new JLabel();
     JButton boton_anadir = new JButton();
     JButton crea_text = new JButton();
     JButton enviar_datos = new JButton();
-    JButton crea_herencia = new JButton();
+    public JButton crea_herencia = new JButton();
     JLabel num = new JLabel();
     public JTextField num_clases = new JTextField();
     modelo m = new modelo();
@@ -105,19 +105,14 @@ public class vista extends JFrame{
         }
         panel.setPreferredSize(new Dimension(500,500+(cajas[i-1].getY()-380)));
     }
-    public void herencias(int n){
-        herencias = new JTextArea[200];
-        herencias[n]= new JTextArea();
-        indicativo_herencias = new JLabel[200];
-        indicativo_herencias[n]= new JLabel(); 
-        indicativo_herencias[n].setText("Nueva herencia");
-        panel.add(indicativo_herencias[n]);
-        indicativo_herencias[n].setBounds(10,y-30,150,30);
-        herencias[n].setBounds(10,y,120,70);
-        panel.add(herencias[n]);
+    public void herencias(){
+        indicativo_herencias.setText("Digite todas las herencias");
+        panel.add(indicativo_herencias);
+        indicativo_herencias.setBounds(10,y-30,170,30);
+        herencias.setBounds(10,y,150,70);
+        panel.add(herencias);
         y=y+120;
-        panel.setPreferredSize(new Dimension(500,500+(herencias[n].getY()-380)));
-        controlador_fin.n=n;
+        panel.setPreferredSize(new Dimension(500,500+(herencias.getY()-380)));
     }
     
     public void oyentes(controlador c, controlador_fin cf, controlador2 c2){

@@ -26,6 +26,7 @@ public class controlador_back implements ActionListener{
             controlador_fin.instancias[i].clear();
             controlador_fin.num_clases=0;
             controlador_fin.numero_atributos.clear();
+            controlador_fin.herencias.clear();
         }
         c.frame.setVisible(false);
         v.setVisible(true);

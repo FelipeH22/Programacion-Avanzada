@@ -60,6 +60,7 @@ public class cuadros extends JPanel{
         paint_clases(g2d);
         paint_composicion(g2d);
         paint_agregacion(g2d);
+        paint_herencia(g2d);
         this.updateUI();
         this.setPreferredSize(new Dimension(x+controlador_fin.num_clases*110,y+300));
         super.paintComponents(g2d);       
@@ -233,5 +234,10 @@ public class cuadros extends JPanel{
                 y=y+120;  
             }
         }
-    }	
+    }
+    
+    public void paint_herencia(Graphics g){
+        System.out.println(composicion);
+        System.out.println(agregacion);
+    }
 }

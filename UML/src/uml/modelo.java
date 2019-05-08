@@ -10,7 +10,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
         {
             for(j=0;j<controlador_fin.clases[i].size();j++)
             {
-                if(!controlador_fin.clases[i].get(j).contains("new")&& !controlador_fin.clases[i].get(j).contains("class"))
+                if(!controlador_fin.clases[i].get(j).contains("new")&& !controlador_fin.clases[i].get(j).contains("class") && !controlador_fin.clases[i].get(j).contains("interface"))
                 {
                     controlador_fin.atributos[i].add(controlador_fin.clases[i].get(j));
                 }
@@ -54,12 +54,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
         }
         
     }
-
-    @Override
-    public void evalua_herencia() {
-        
-    }
-
+    
     @Override
     public void evalua_instancias() {
         for(i=0;i<controlador_fin.num_clases;i++)
@@ -128,5 +123,39 @@ public class modelo extends modelo_abstract implements modelo_interface{
         }        
         cuadros.agregacion=this.agregacion;
         cuadros.composicion=this.composicion;
-    }    
+    }
+
+    @Override
+    public void evalua_herencias(){
+        for(i=0;i<controlador_fin.herencias.size();i++)
+        {
+            if(controlador_fin.herencias.get(i).contains("implements"))
+            {
+                temp3 = controlador_fin.herencias.get(i);
+                temp3 = temp3.replace("implements", ",");
+                temp3 = temp3.trim();
+                String[] arrOfStr;
+                arrOfStr=temp3.split(",");
+                arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
+                System.out.println(arrOfStr[0]);
+                controlador_fin.implementss.put(arrOfStr[0], arrOfStr[1]);
+                i_mplements=true;
+                e_xtends=false;
+            }
+            if(controlador_fin.herencias.get(i).contains("extends"))
+            {
+                temp2 = controlador_fin.herencias.get(i);
+                temp2 = temp2.replace("extends", ",");
+                temp2 = temp2.trim();
+                String[] arrOfStr;
+                arrOfStr=temp2.split(",");
+                arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);
+                controlador_fin.extendss.put(arrOfStr[0], arrOfStr[1]);
+                i_mplements=false;
+                e_xtends=true;
+            }
+            
+        }
+        
+    }
 }

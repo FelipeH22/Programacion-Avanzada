@@ -17,7 +17,8 @@ public class controlador2 implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {       
-        v.herencias(contador);
+        v.herencias();
+        v.crea_herencia.setEnabled(false);
         v.scroll.updateUI();
         contador++;
     }   

@@ -8,7 +8,10 @@ public abstract class modelo_abstract {
     String temp1;
     String temp2;
     String temp3;
-    String temp_nombre;
+    String temp4;
     public boolean composicion;
     public boolean agregacion;
+    public boolean i_mplements;
+    public boolean e_xtends;
+    
 }

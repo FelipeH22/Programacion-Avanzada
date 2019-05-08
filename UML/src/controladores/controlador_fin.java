@@ -26,6 +26,8 @@ public class controlador_fin implements ActionListener{
     public static ArrayList <String> herencias = new ArrayList<>();
     public static Map<String, String> compos = new HashMap<String, String>();
     public static Map<String, String> agrega = new HashMap<String, String>();
+    public static Map<String, String> implementss = new HashMap<String, String>();
+    public static Map<String, String> extendss = new HashMap<String, String>();
     public controlador_fin(vista v, modelo m){
         this.v=v;
         this.m=m;
@@ -50,7 +52,8 @@ public class controlador_fin implements ActionListener{
         m.determina_privacidad();
         m.evalua_instancias();
         m.llena_arrays();
-        m.evalua_composicion();        
+        m.evalua_composicion();   
+        m.evalua_herencias();
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
@@ -76,5 +79,8 @@ public class controlador_fin implements ActionListener{
     }
     
     public void leer_herencias(){
+        String[] arrOfStr3;
+        arrOfStr3 = v.herencias.getText().split("\n");
+        herencias.addAll(Arrays.asList(arrOfStr3));
     }
 }
