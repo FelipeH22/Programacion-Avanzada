@@ -23,8 +23,15 @@ public class cuadros extends JPanel{
     public static int clase2_compo; 
     public static int clase1_agrega;
     public static int clase2_agrega; 
+    public static int clase1_implements;
+    public static int clase2_implements; 
+    public static int clase1_extends;
+    public static int clase2_extends;
     public static boolean composicion = false;
     public static boolean agregacion = false;
+    public static boolean e_xtends = false;
+    public static boolean i_mplements = false;
+    
 
     public JFrame frame = new JFrame();
     public JScrollPane scroll = new JScrollPane();
@@ -60,7 +67,7 @@ public class cuadros extends JPanel{
         paint_clases(g2d);
         paint_composicion(g2d);
         paint_agregacion(g2d);
-        paint_herencia(g2d);
+        paint_implements(g2d);
         this.updateUI();
         this.setPreferredSize(new Dimension(x+controlador_fin.num_clases*110,y+300));
         super.paintComponents(g2d);       
@@ -236,8 +243,75 @@ public class cuadros extends JPanel{
         }
     }
     
-    public void paint_herencia(Graphics g){
-        System.out.println(composicion);
-        System.out.println(agregacion);
+    public void paint_implements(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        BufferedImage img = null;
+        try {
+
+                img = ImageIO.read(new File("flecha_interfase")); // Aquí la ruta del fichero
+                } catch (IOException e) {
+                System.out.println("Problemas leyendo la imagen n");
+                System.out.println("Motivo: " + e.getLocalizedMessage());
+            } 
+        x=10;
+        y=y+20;
+        if(i_mplements==true)
+        {
+            g2d.setColor(Color.blue);
+            g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_implements].size()*15+80);
+            g2d.drawString("Realización", x+100, y+15);
+            g2d.setColor(Color.BLACK);
+            y=y+10;
+            x=x+10;
+            for(i=0;i<2;i++)
+            {
+                if(i==0)
+                {
+                    x_texto=x+4;
+                    g2d.drawRect(x, y=y+20, 100, 20);
+                    y_texto=y+12;
+                    g2d.drawString(controlador_fin.clases[clase1_implements].get(0), x_texto, y_texto);
+                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_implements].size()*15+10);   
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.instancias[clase1_implements].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.instancias[clase1_implements].get(j), x_texto, y_texto);
+                        y_texto=y_texto+15;
+                    }
+                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_implements].size()*15+10 , 100,controlador_fin.atributos[clase1_implements].size()*15+10);
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.atributos[clase1_implements].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.atributos[clase1_implements].get(j), x_texto, y_texto);
+                        y_texto=y_texto+15;
+                    }
+                    g2d.drawImage(img, x+23, y+50,70,70, this); 
+                    g2d.drawLine(x+58,y+120,x+58,y+170);
+                }
+                else
+                {
+                    x_texto=x+4;
+                    g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_implements].size()*15+80, 100, 20);
+                    y_texto=y+12;
+                    g2d.drawString(controlador_fin.clases[clase2_implements].get(0), x_texto, y_texto);
+                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_implements].size()*15+10);   
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.instancias[clase2_implements].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.instancias[clase2_implements].get(j), x_texto, y_texto);
+                        y_texto=y_texto+10;
+                    }
+                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_implements].size()*15+10 , 100,controlador_fin.atributos[clase2_implements].size()*15+10);
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.atributos[clase2_implements].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.atributos[clase2_implements].get(j), x_texto, y_texto);
+                        y_texto=y_texto+10;
+                    }
+                }
+                
+                y=y+120;  
+            }
+        }
     }
 }

@@ -137,6 +137,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
                 String[] arrOfStr;
                 arrOfStr=temp3.split(",");
                 arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
+                temp3=arrOfStr[0];
                 System.out.println(arrOfStr[0]);
                 controlador_fin.implementss.put(arrOfStr[0], arrOfStr[1]);
                 i_mplements=true;
@@ -156,6 +157,22 @@ public class modelo extends modelo_abstract implements modelo_interface{
             }
             
         }
+        for(h=0;h<controlador_fin.implementss.size();h++)
+        {
+            if(controlador_fin.clases[h].get(0).equals(temp3))
+            {
+                uml.cuadros.clase2_compo=h;
+            }
+        }
+        for(h=0;h<controlador_fin.num_clases;h++)
+        {
+            if(controlador_fin.clases[h].get(0).equals(temp3))
+            {
+                uml.cuadros.clase2_agrega=h;
+            }
+        }
+        cuadros.i_mplements=i_mplements;
+        cuadros.e_xtends = e_xtends;
         
     }
 }
