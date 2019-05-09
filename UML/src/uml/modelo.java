@@ -132,55 +132,61 @@ public class modelo extends modelo_abstract implements modelo_interface{
         String[] arrOfStr = null;
         for(i=0;i<controlador_fin.herencias.size();i++)
         {
-            if(controlador_fin.herencias.get(i).contains("implements"))
-            {
-                temp3 = controlador_fin.herencias.get(i);
-                temp3 = temp3.replace("implements", ",");
-                temp3 = temp3.trim();                
-                arrOfStr=temp3.split(",");
-                arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
-                temp3=arrOfStr[0];
-                controlador_fin.implementss.get(i).put(temp3, arrOfStr[1]);
-                i_mplements[contador2]=true;
-                e_xtends[contador2]=false;
-                for(h=0;h<controlador_fin.num_clases;h++)
+            //for(j=0;j<controlador_fin.clases[i].size();j++)
+            //{
+                if(controlador_fin.herencias.get(i).contains("implements"))
                 {
-                    if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
+                    temp2 = controlador_fin.herencias.get(i);
+                    temp2 = temp2.replace("implements", " , ");
+                    temp2 = temp2.trim();
+                    arrOfStr=temp2.split(",");
+                    arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
+                    temp2=arrOfStr[0];
+                    controlador_fin.implementss.get(i).put(temp2, arrOfStr[1]);
+                    for(j=0;j<controlador_fin.num_clases;j++)
                     {
-                        uml.cuadros.clase2_implements=h;
-                        i_mplements[contador2]=true;
+                        if(controlador_fin.clases[j].get(0).equals(arrOfStr[0]))
+                            uml.cuadros.clase1_implements=j;
                     }
-                    else
-                        i_mplements[contador2]=false;
+                    i_mplements[contador2]=true;
+                    e_xtends[contador2]=false;
+                    contador2++;
                 }
-                contador2++;
+                if(controlador_fin.herencias.get(i).contains("extends"))
+                {
+                    temp4 = controlador_fin.herencias.get(i);
+                    temp4 = temp4.replace("extends", " , ");
+                    temp4 = temp4.trim();
+                    arrOfStr=temp4.split(",");
+                    arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);
+                    temp4=arrOfStr[0];
+                    controlador_fin.implementss.get(i).put(temp4, arrOfStr[1]);
+                    for(j=0;j<controlador_fin.num_clases;j++)
+                    {
+                        if(controlador_fin.clases[j].get(0).equals(arrOfStr[0]))
+                            uml.cuadros.clase1_extends=j;                                
+                    }
+                    i_mplements[contador2]=false;
+                    e_xtends[contador2]=true;
+                    contador2++;
+                }
+            //}
+        }
+        for(h=0;h<controlador_fin.num_clases;h++)
+        {
+            if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
+            {
+                uml.cuadros.clase2_implements=h;
             }
-            if(controlador_fin.herencias.get(i).contains("extends"))
+        }
+        for(h=0;h<controlador_fin.num_clases;h++)
+        {
+            if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
             {
-                temp2 = controlador_fin.herencias.get(i);
-                temp2 = temp2.replace("extends", ",");
-                temp2 = temp2.trim();
-                arrOfStr=temp2.split(",");
-                arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);      
-                temp2=arrOfStr[0];
-                controlador_fin.extendss.get(i).put(temp2, arrOfStr[1]);
-                i_mplements[contador2]=false;
-                e_xtends[contador2]=true;
-                for(h=0;h<controlador_fin.num_clases;h++)
-                {
-                    if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
-                    {
-                        uml.cuadros.clase2_extends=h;
-                        e_xtends[contador2]=true;
-                    }
-                    else
-                        e_xtends[contador2]=false;
-                }
-                contador2++;
-            }    
+                uml.cuadros.clase2_extends=h;
+            }
         }        
-        cuadros.i_mplements=i_mplements;
-        cuadros.e_xtends = e_xtends;
-        
+        cuadros.i_mplements=this.i_mplements;
+        cuadros.e_xtends=this.e_xtends;
     }
 }
