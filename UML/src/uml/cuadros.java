@@ -68,6 +68,7 @@ public class cuadros extends JPanel{
         paint_composicion(g2d);
         paint_agregacion(g2d);
         paint_implements(g2d);
+        paint_extends(g2d);
         this.updateUI();
         this.setPreferredSize(new Dimension(x+controlador_fin.num_clases*110,y+300));
         super.paintComponents(g2d);       
@@ -248,7 +249,7 @@ public class cuadros extends JPanel{
         BufferedImage img = null;
         try {
 
-                img = ImageIO.read(new File("flecha_interfase")); // Aquí la ruta del fichero
+                img = ImageIO.read(new File("flecha_interface.png")); // Aquí la ruta del fichero
                 } catch (IOException e) {
                 System.out.println("Problemas leyendo la imagen n");
                 System.out.println("Motivo: " + e.getLocalizedMessage());
@@ -285,8 +286,11 @@ public class cuadros extends JPanel{
                         g2d.drawString(controlador_fin.atributos[clase1_implements].get(j), x_texto, y_texto);
                         y_texto=y_texto+15;
                     }
-                    g2d.drawImage(img, x+23, y+50,70,70, this); 
-                    g2d.drawLine(x+58,y+120,x+58,y+170);
+                    g2d.drawImage(img, x+23, y+50,60,75, this); 
+                    g2d.drawLine(x+53, y+70, x+53, y+85);
+                    g2d.drawLine(x+53, y+90, x+53, y+105);
+                    g2d.drawLine(x+53, y+110, x+53, y+125);
+                    g2d.drawLine(x+53, y+130, x+53, y+145);
                 }
                 else
                 {
@@ -306,6 +310,78 @@ public class cuadros extends JPanel{
                     for(j=0;j<controlador_fin.atributos[clase2_implements].size();j++)
                     {
                         g2d.drawString(controlador_fin.atributos[clase2_implements].get(j), x_texto, y_texto);
+                        y_texto=y_texto+10;
+                    }
+                }
+                
+                y=y+120;  
+            }
+        }
+    }
+    
+    public void paint_extends(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        BufferedImage img = null;
+        try {
+
+                img = ImageIO.read(new File("flecha_extends.png")); // Aquí la ruta del fichero
+                } catch (IOException e) {
+                System.out.println("Problemas leyendo la imagen n");
+                System.out.println("Motivo: " + e.getLocalizedMessage());
+            } 
+        x=10;
+        y=y+20;
+        if(e_xtends==true)
+        {
+            g2d.setColor(Color.blue);
+            g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_implements].size()*15+80);
+            g2d.drawString("Herencia", x+100, y+15);
+            g2d.setColor(Color.BLACK);
+            y=y+10;
+            x=x+10;
+            for(i=0;i<2;i++)
+            {
+                if(i==0)
+                {
+                    x_texto=x+4;
+                    g2d.drawRect(x, y=y+20, 100, 20);
+                    y_texto=y+12;
+                    g2d.drawString(controlador_fin.clases[clase1_extends].get(0), x_texto, y_texto);
+                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_extends].size()*15+10);   
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.instancias[clase1_extends].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.instancias[clase1_extends].get(j), x_texto, y_texto);
+                        y_texto=y_texto+15;
+                    }
+                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_extends].size()*15+10 , 100,controlador_fin.atributos[clase1_extends].size()*15+10);
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.atributos[clase1_extends].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.atributos[clase1_extends].get(j), x_texto, y_texto);
+                        y_texto=y_texto+15;
+                    }
+                    g2d.drawImage(img, x+23, y+50,60,80, this); 
+                    g2d.drawLine(x+53, y+70, x+53, y+145);
+                }
+                else
+                {
+                    x_texto=x+4;
+                    g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_extends].size()*15+80, 100, 20);
+                    y_texto=y+12;
+                    g2d.drawString(controlador_fin.clases[clase2_extends].get(0), x_texto, y_texto);
+                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_extends].size()*15+10);   
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.instancias[clase2_extends].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.instancias[clase2_extends].get(j), x_texto, y_texto);
+                        y_texto=y_texto+10;
+                    }
+                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_extends].size()*15+10 , 100,controlador_fin.atributos[clase2_extends].size()*15+10);
+                    y_texto=y+12;
+                    for(j=0;j<controlador_fin.atributos[clase2_extends].size();j++)
+                    {
+                        g2d.drawString(controlador_fin.atributos[clase2_extends].get(j), x_texto, y_texto);
                         y_texto=y_texto+10;
                     }
                 }

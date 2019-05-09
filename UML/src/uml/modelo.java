@@ -127,6 +127,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
 
     @Override
     public void evalua_herencias(){
+        String[] arrOfStr = null;
         for(i=0;i<controlador_fin.herencias.size();i++)
         {
             if(controlador_fin.herencias.get(i).contains("implements"))
@@ -134,43 +135,50 @@ public class modelo extends modelo_abstract implements modelo_interface{
                 temp3 = controlador_fin.herencias.get(i);
                 temp3 = temp3.replace("implements", ",");
                 temp3 = temp3.trim();
-                String[] arrOfStr;
+                
                 arrOfStr=temp3.split(",");
                 arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
                 temp3=arrOfStr[0];
-                System.out.println(arrOfStr[0]);
-                controlador_fin.implementss.put(arrOfStr[0], arrOfStr[1]);
+                controlador_fin.implementss.put(temp3, arrOfStr[1]);
                 i_mplements=true;
                 e_xtends=false;
+                for(h=0;h<controlador_fin.num_clases;h++)
+                {
+                    if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
+                    {
+                        uml.cuadros.clase2_implements=h;
+                        i_mplements=true;
+                    }
+                    else
+                        i_mplements=false;
+                }
             }
             if(controlador_fin.herencias.get(i).contains("extends"))
             {
                 temp2 = controlador_fin.herencias.get(i);
                 temp2 = temp2.replace("extends", ",");
                 temp2 = temp2.trim();
-                String[] arrOfStr;
                 arrOfStr=temp2.split(",");
-                arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);
-                controlador_fin.extendss.put(arrOfStr[0], arrOfStr[1]);
+                arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);      
+                temp2=arrOfStr[0];
+                controlador_fin.extendss.put(temp2, arrOfStr[1]);
                 i_mplements=false;
                 e_xtends=true;
+                for(h=0;h<controlador_fin.num_clases;h++)
+                {
+                    if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
+                    {
+                        uml.cuadros.clase2_extends=h;
+                        e_xtends=true;
+                    }
+                    else
+                        e_xtends=false;
+                }
             }
             
-        }
-        for(h=0;h<controlador_fin.implementss.size();h++)
-        {
-            if(controlador_fin.clases[h].get(0).equals(temp3))
-            {
-                uml.cuadros.clase2_compo=h;
-            }
-        }
-        for(h=0;h<controlador_fin.num_clases;h++)
-        {
-            if(controlador_fin.clases[h].get(0).equals(temp3))
-            {
-                uml.cuadros.clase2_agrega=h;
-            }
-        }
+            
+            
+        }        
         cuadros.i_mplements=i_mplements;
         cuadros.e_xtends = e_xtends;
         

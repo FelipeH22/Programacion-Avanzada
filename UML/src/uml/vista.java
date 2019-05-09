@@ -90,7 +90,7 @@ public class vista extends JFrame{
             {
                 if(i%2==0)
                 {
-                    cajas[i].setText("class");
+                    cajas[i].setText("class ");
                 }
                 indicativo_cajas[i].setBounds(10,y-40,150,30);
                 panel.add(indicativo_cajas[i]);
