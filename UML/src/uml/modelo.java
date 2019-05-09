@@ -87,7 +87,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp3 = temp3.replace("-","");
                     temp3 = temp3.replace("#","");
                     temp3 = temp3.trim();
-                    controlador_fin.agrega.put(controlador_fin.clases[i].get(0), temp3);
+                    controlador_fin.agrega.get(i).put(controlador_fin.clases[i].get(0), temp3);
                     uml.cuadros.clase1_agrega=i;
                     agregacion[contador]=true;
                     composicion[contador]=false;
@@ -101,7 +101,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp1 = temp1.replace("-","");
                     temp1 = temp1.replace("#","");
                     temp1 = temp1.trim();
-                    controlador_fin.compos.put(controlador_fin.clases[i].get(0), temp1);
+                    controlador_fin.compos.get(i).put(controlador_fin.clases[i].get(0), temp1);
                     uml.cuadros.clase1_compo=i;
                     agregacion[contador]=false;
                     composicion[contador]=true;
@@ -140,7 +140,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
                 arrOfStr=temp3.split(",");
                 arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
                 temp3=arrOfStr[0];
-                controlador_fin.implementss.put(temp3, arrOfStr[1]);
+                controlador_fin.implementss.get(i).put(temp3, arrOfStr[1]);
                 i_mplements[contador2]=true;
                 e_xtends[contador2]=false;
                 for(h=0;h<controlador_fin.num_clases;h++)
@@ -163,7 +163,7 @@ public class modelo extends modelo_abstract implements modelo_interface{
                 arrOfStr=temp2.split(",");
                 arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);      
                 temp2=arrOfStr[0];
-                controlador_fin.extendss.put(temp2, arrOfStr[1]);
+                controlador_fin.extendss.get(i).put(temp2, arrOfStr[1]);
                 i_mplements[contador2]=false;
                 e_xtends[contador2]=true;
                 for(h=0;h<controlador_fin.num_clases;h++)

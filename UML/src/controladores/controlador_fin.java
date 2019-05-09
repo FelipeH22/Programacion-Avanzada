@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import uml.cuadros;
 import uml.modelo;
@@ -24,10 +27,10 @@ public class controlador_fin implements ActionListener{
     public static ArrayList <String> atributos[];
     public static ArrayList <String> instancias[];    
     public static ArrayList <String> herencias = new ArrayList<>();
-    public static Map<String, String> compos = new HashMap<String, String>();
-    public static Map<String, String> agrega = new HashMap<String, String>();
-    public static Map<String, String> implementss = new HashMap<String, String>();
-    public static Map<String, String> extendss = new HashMap<String, String>();
+    public static List<Map<String,String>> compos = new ArrayList<Map<String,String>>();
+    public static List<Map<String,String>> agrega = new ArrayList<Map<String,String>>();
+    public static List<Map<String,String>> implementss = new ArrayList<Map<String,String>>();
+    public static List<Map<String,String>> extendss = new ArrayList<Map<String,String>>();
     public controlador_fin(vista v, modelo m){
         this.v=v;
         this.m=m;
@@ -82,5 +85,19 @@ public class controlador_fin implements ActionListener{
         String[] arrOfStr3;
         arrOfStr3 = v.herencias.getText().split("\n");
         herencias.addAll(Arrays.asList(arrOfStr3));
+        map_size();
+    }
+    
+    public void map_size(){
+        for(i=0;i<herencias.size();i++)
+        {
+            implementss.add(new HashMap<>());
+            implementss.add(new HashMap<>());
+        }
+        for(i=0;i<num_clases;i++)
+        {
+            compos.add(new HashMap<>());
+            agrega.add(new HashMap<>());
+        }
     }
 }
