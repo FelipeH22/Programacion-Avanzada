@@ -27,10 +27,10 @@ public class cuadros extends JPanel{
     public static int clase2_implements; 
     public static int clase1_extends;
     public static int clase2_extends;
-    public static boolean composicion = false;
-    public static boolean agregacion = false;
-    public static boolean e_xtends = false;
-    public static boolean i_mplements = false;
+    public static boolean composicion[] = new boolean[10];
+    public static boolean agregacion[] = new boolean[10];
+    public static boolean e_xtends[] = new boolean[10];
+    public static boolean i_mplements[] = new boolean[10];
     
 
     public JFrame frame = new JFrame();
@@ -114,63 +114,67 @@ public class cuadros extends JPanel{
             } 
         x=10;
         y=y+20;
-        if(composicion==true){
-            g2d.setColor(Color.red);
-            g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_compo].size()*15+80);
-            g2d.drawString("Composición", x+100, y+15);
-            g2d.setColor(Color.BLACK);
-            y=y+10;
-            x=x+10;
-            for(i=0;i<2;i++)
-            {
-                if(i==0)
+        for(h=0;h<composicion.length;h++)
+        {
+            if(composicion[h]==true){
+                g2d.setColor(Color.red);
+                g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_compo].size()*15+80);
+                g2d.drawString("Composición", x+100, y+15);
+                g2d.setColor(Color.BLACK);
+                y=y+10;
+                x=x+10;
+                for(i=0;i<2;i++)
                 {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+20, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase1_compo].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_compo].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase1_compo].size();j++)
+                    if(i==0)
                     {
-                        g2d.drawString(controlador_fin.instancias[clase1_compo].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+20, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase1_compo].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_compo].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase1_compo].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase1_compo].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_compo].size()*15+10 , 100,controlador_fin.atributos[clase1_compo].size()*15+10);
+                        y_texto=y+15;
+                        for(j=0;j<controlador_fin.atributos[clase1_compo].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase1_compo].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawImage(img, x+23, y+50,35,70, this); 
+                        g2d.drawLine(x+40,y+80,x+40,y+150);
                     }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_compo].size()*15+10 , 100,controlador_fin.atributos[clase1_compo].size()*15+10);
-                    y_texto=y+15;
-                    for(j=0;j<controlador_fin.atributos[clase1_compo].size();j++)
+                    else
                     {
-                        g2d.drawString(controlador_fin.atributos[clase1_compo].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_compo].size()*15+80, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase2_compo].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_compo].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase2_compo].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase2_compo].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_compo].size()*15+10 , 100,controlador_fin.atributos[clase2_compo].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase2_compo].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase2_compo].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
                     }
-                    g2d.drawImage(img, x+23, y+50,35,70, this); 
-                    g2d.drawLine(x+40,y+80,x+40,y+150);
+
+                    y=y+120;  
                 }
-                else
-                {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_compo].size()*15+80, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase2_compo].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_compo].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase2_compo].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.instancias[clase2_compo].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
-                    }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_compo].size()*15+10 , 100,controlador_fin.atributos[clase2_compo].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase2_compo].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.atributos[clase2_compo].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
-                    }
-                }
-                
-                y=y+120;  
             }
         }
+        
     }
     
     public void paint_agregacion(Graphics g){
@@ -185,61 +189,64 @@ public class cuadros extends JPanel{
             } 
         x=10;
         y=y+20;
-        if(agregacion==true){
-            g2d.setColor(Color.red);
-            g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_agrega].size()*15+80);
-            g2d.drawString("Agregación", x+100, y+15);
-            g2d.setColor(Color.BLACK);
-            y=y+10;
-            x=x+10;
-            for(i=0;i<2;i++)
-            {
-                if(i==0)
+        for(h=0;h<agregacion.length;h++)
+        {
+            if(agregacion[h]==true){
+                g2d.setColor(Color.red);
+                g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_agrega].size()*15+80);
+                g2d.drawString("Agregación", x+100, y+15);
+                g2d.setColor(Color.BLACK);
+                y=y+10;
+                x=x+10;
+                for(i=0;i<2;i++)
                 {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+20, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase1_agrega].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_agrega].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase1_agrega].size();j++)
+                    if(i==0)
                     {
-                        g2d.drawString(controlador_fin.instancias[clase1_agrega].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+20, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase1_agrega].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_agrega].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase1_agrega].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase1_agrega].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_agrega].size()*15+10 , 100,controlador_fin.atributos[clase1_agrega].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase1_agrega].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase1_agrega].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawImage(img, x+23, y+50,70,70, this); 
+                        g2d.drawLine(x+58,y+120,x+58,y+170);
                     }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_agrega].size()*15+10 , 100,controlador_fin.atributos[clase1_agrega].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase1_agrega].size();j++)
+                    else
                     {
-                        g2d.drawString(controlador_fin.atributos[clase1_agrega].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_agrega].size()*15+80, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase2_agrega].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_agrega].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase2_agrega].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase2_agrega].get(j), x_texto, y_texto);
+                            y_texto=y_texto+10;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_agrega].size()*15+10 , 100,controlador_fin.atributos[clase2_agrega].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase2_agrega].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase2_agrega].get(j), x_texto, y_texto);
+                            y_texto=y_texto+10;
+                        }
                     }
-                    g2d.drawImage(img, x+23, y+50,70,70, this); 
-                    g2d.drawLine(x+58,y+120,x+58,y+170);
+
+                    y=y+120;  
                 }
-                else
-                {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_agrega].size()*15+80, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase2_agrega].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_agrega].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase2_agrega].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.instancias[clase2_agrega].get(j), x_texto, y_texto);
-                        y_texto=y_texto+10;
-                    }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_agrega].size()*15+10 , 100,controlador_fin.atributos[clase2_agrega].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase2_agrega].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.atributos[clase2_agrega].get(j), x_texto, y_texto);
-                        y_texto=y_texto+10;
-                    }
-                }
-                
-                y=y+120;  
             }
         }
     }
@@ -256,67 +263,72 @@ public class cuadros extends JPanel{
             } 
         x=10;
         y=y+20;
-        if(i_mplements==true)
+        for(h=0;h<i_mplements.length;h++)
         {
-            g2d.setColor(Color.blue);
-            g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_implements].size()*15+80);
-            g2d.drawString("Realización", x+100, y+15);
-            g2d.setColor(Color.BLACK);
-            y=y+10;
-            x=x+10;
-            for(i=0;i<2;i++)
+            if(i_mplements[h]==true)
             {
-                if(i==0)
+                g2d.setColor(Color.blue);
+                g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_implements].size()*15+80);
+                g2d.drawString("Realización", x+100, y+15);
+                g2d.setColor(Color.BLACK);
+                y=y+10;
+                x=x+10;
+                for(i=0;i<2;i++)
                 {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+20, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase1_implements].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_implements].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase1_implements].size();j++)
+                    if(i==0)
                     {
-                        g2d.drawString(controlador_fin.instancias[clase1_implements].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+20, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase1_implements].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_implements].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase1_implements].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase1_implements].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_implements].size()*15+10 , 100,controlador_fin.atributos[clase1_implements].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase1_implements].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase1_implements].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawImage(img, x+23, y+50,60,75, this); 
+                        g2d.drawLine(x+53, y+70, x+53, y+85);
+                        g2d.drawLine(x+53, y+90, x+53, y+105);
+                        g2d.drawLine(x+53, y+110, x+53, y+125);
+                        g2d.drawLine(x+53, y+130, x+53, y+145);
                     }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_implements].size()*15+10 , 100,controlador_fin.atributos[clase1_implements].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase1_implements].size();j++)
+                    else
                     {
-                        g2d.drawString(controlador_fin.atributos[clase1_implements].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_implements].size()*15+80, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase2_implements].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_implements].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase2_implements].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase2_implements].get(j), x_texto, y_texto);
+                            y_texto=y_texto+10;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_implements].size()*15+10 , 100,controlador_fin.atributos[clase2_implements].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase2_implements].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase2_implements].get(j), x_texto, y_texto);
+                            y_texto=y_texto+10;
+                        }
                     }
-                    g2d.drawImage(img, x+23, y+50,60,75, this); 
-                    g2d.drawLine(x+53, y+70, x+53, y+85);
-                    g2d.drawLine(x+53, y+90, x+53, y+105);
-                    g2d.drawLine(x+53, y+110, x+53, y+125);
-                    g2d.drawLine(x+53, y+130, x+53, y+145);
+
+                    y=y+120;  
                 }
-                else
-                {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_implements].size()*15+80, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase2_implements].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_implements].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase2_implements].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.instancias[clase2_implements].get(j), x_texto, y_texto);
-                        y_texto=y_texto+10;
-                    }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_implements].size()*15+10 , 100,controlador_fin.atributos[clase2_implements].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase2_implements].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.atributos[clase2_implements].get(j), x_texto, y_texto);
-                        y_texto=y_texto+10;
-                    }
-                }
-                
-                y=y+120;  
             }
+            
         }
+        
     }
     
     public void paint_extends(Graphics g){
@@ -331,63 +343,67 @@ public class cuadros extends JPanel{
             } 
         x=10;
         y=y+20;
-        if(e_xtends==true)
+        for(h=0;h<e_xtends.length;h++)
         {
-            g2d.setColor(Color.blue);
-            g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_implements].size()*15+80);
-            g2d.drawString("Herencia", x+100, y+15);
-            g2d.setColor(Color.BLACK);
-            y=y+10;
-            x=x+10;
-            for(i=0;i<2;i++)
+            if(e_xtends[h]==true)
             {
-                if(i==0)
+                g2d.setColor(Color.blue);
+                g2d.drawRect(x, y=y+controlador_fin.atributos[0].size()*15+100, 300, 300+controlador_fin.atributos[clase2_implements].size()*15+80);
+                g2d.drawString("Herencia", x+100, y+15);
+                g2d.setColor(Color.BLACK);
+                y=y+10;
+                x=x+10;
+                for(i=0;i<2;i++)
                 {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+20, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase1_extends].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_extends].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase1_extends].size();j++)
+                    if(i==0)
                     {
-                        g2d.drawString(controlador_fin.instancias[clase1_extends].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+20, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase1_extends].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase1_extends].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase1_extends].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase1_extends].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_extends].size()*15+10 , 100,controlador_fin.atributos[clase1_extends].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase1_extends].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase1_extends].get(j), x_texto, y_texto);
+                            y_texto=y_texto+15;
+                        }
+                        g2d.drawImage(img, x+23, y+50,60,80, this); 
+                        g2d.drawLine(x+53, y+70, x+53, y+145);
                     }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase1_extends].size()*15+10 , 100,controlador_fin.atributos[clase1_extends].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase1_extends].size();j++)
+                    else
                     {
-                        g2d.drawString(controlador_fin.atributos[clase1_extends].get(j), x_texto, y_texto);
-                        y_texto=y_texto+15;
+                        x_texto=x+4;
+                        g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_extends].size()*15+80, 100, 20);
+                        y_texto=y+12;
+                        g2d.drawString(controlador_fin.clases[clase2_extends].get(0), x_texto, y_texto);
+                        g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_extends].size()*15+10);   
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.instancias[clase2_extends].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.instancias[clase2_extends].get(j), x_texto, y_texto);
+                            y_texto=y_texto+10;
+                        }
+                        g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_extends].size()*15+10 , 100,controlador_fin.atributos[clase2_extends].size()*15+10);
+                        y_texto=y+12;
+                        for(j=0;j<controlador_fin.atributos[clase2_extends].size();j++)
+                        {
+                            g2d.drawString(controlador_fin.atributos[clase2_extends].get(j), x_texto, y_texto);
+                            y_texto=y_texto+10;
+                        }
                     }
-                    g2d.drawImage(img, x+23, y+50,60,80, this); 
-                    g2d.drawLine(x+53, y+70, x+53, y+145);
+
+                    y=y+120;  
                 }
-                else
-                {
-                    x_texto=x+4;
-                    g2d.drawRect(x, y=y+controlador_fin.atributos[clase2_extends].size()*15+80, 100, 20);
-                    y_texto=y+12;
-                    g2d.drawString(controlador_fin.clases[clase2_extends].get(0), x_texto, y_texto);
-                    g2d.drawRect(x, y=y+20, 100, controlador_fin.instancias[clase2_extends].size()*15+10);   
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.instancias[clase2_extends].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.instancias[clase2_extends].get(j), x_texto, y_texto);
-                        y_texto=y_texto+10;
-                    }
-                    g2d.drawRect(x, y=y+controlador_fin.instancias[clase2_extends].size()*15+10 , 100,controlador_fin.atributos[clase2_extends].size()*15+10);
-                    y_texto=y+12;
-                    for(j=0;j<controlador_fin.atributos[clase2_extends].size();j++)
-                    {
-                        g2d.drawString(controlador_fin.atributos[clase2_extends].get(j), x_texto, y_texto);
-                        y_texto=y_texto+10;
-                    }
-                }
-                
-                y=y+120;  
             }
         }
+        
     }
 }

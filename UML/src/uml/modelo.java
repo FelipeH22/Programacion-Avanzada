@@ -89,8 +89,9 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp3 = temp3.trim();
                     controlador_fin.agrega.put(controlador_fin.clases[i].get(0), temp3);
                     uml.cuadros.clase1_agrega=i;
-                    agregacion=true;
-                    composicion=false;
+                    agregacion[contador]=true;
+                    composicion[contador]=false;
+                    contador++;
                 }
                 if(controlador_fin.clases[i].get(j).contains("new")&& !controlador_fin.clases[i].get(j).contains("[]"))
                 {
@@ -102,8 +103,9 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp1 = temp1.trim();
                     controlador_fin.compos.put(controlador_fin.clases[i].get(0), temp1);
                     uml.cuadros.clase1_compo=i;
-                    agregacion=false;
-                    composicion=true;
+                    agregacion[contador]=false;
+                    composicion[contador]=true;
+                    contador++;
                 }
             }
         }
@@ -134,24 +136,24 @@ public class modelo extends modelo_abstract implements modelo_interface{
             {
                 temp3 = controlador_fin.herencias.get(i);
                 temp3 = temp3.replace("implements", ",");
-                temp3 = temp3.trim();
-                
+                temp3 = temp3.trim();                
                 arrOfStr=temp3.split(",");
                 arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "interface"+arrOfStr[1]);
                 temp3=arrOfStr[0];
                 controlador_fin.implementss.put(temp3, arrOfStr[1]);
-                i_mplements=true;
-                e_xtends=false;
+                i_mplements[contador2]=true;
+                e_xtends[contador2]=false;
                 for(h=0;h<controlador_fin.num_clases;h++)
                 {
                     if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
                     {
                         uml.cuadros.clase2_implements=h;
-                        i_mplements=true;
+                        i_mplements[contador2]=true;
                     }
                     else
-                        i_mplements=false;
+                        i_mplements[contador2]=false;
                 }
+                contador2++;
             }
             if(controlador_fin.herencias.get(i).contains("extends"))
             {
@@ -162,22 +164,20 @@ public class modelo extends modelo_abstract implements modelo_interface{
                 arrOfStr[1]=arrOfStr[1].replaceAll(arrOfStr[1], "class"+arrOfStr[1]);      
                 temp2=arrOfStr[0];
                 controlador_fin.extendss.put(temp2, arrOfStr[1]);
-                i_mplements=false;
-                e_xtends=true;
+                i_mplements[contador2]=false;
+                e_xtends[contador2]=true;
                 for(h=0;h<controlador_fin.num_clases;h++)
                 {
                     if(controlador_fin.clases[h].get(0).equals(arrOfStr[1]))
                     {
                         uml.cuadros.clase2_extends=h;
-                        e_xtends=true;
+                        e_xtends[contador2]=true;
                     }
                     else
-                        e_xtends=false;
+                        e_xtends[contador2]=false;
                 }
-            }
-            
-            
-            
+                contador2++;
+            }    
         }        
         cuadros.i_mplements=i_mplements;
         cuadros.e_xtends = e_xtends;
