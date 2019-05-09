@@ -87,11 +87,16 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp3 = temp3.replace("-","");
                     temp3 = temp3.replace("#","");
                     temp3 = temp3.trim();
-                    controlador_fin.agrega.get(i).put(controlador_fin.clases[i].get(0), temp3);
+                    for(h=0;h<controlador_fin.num_clases;h++)
+                    {
+                        if(controlador_fin.clases[h].get(0).equals(temp3))
+                        {
+                            uml.cuadros.clase2_agrega=h;
+                        }
+                    }  
                     uml.cuadros.clase1_agrega=i;
+                    controlador_fin.agrega.get(i).put(controlador_fin.clases[uml.cuadros.clase1_agrega].get(0), controlador_fin.clases[uml.cuadros.clase2_agrega].get(0));
                     agregacion[contador]=true;
-                    composicion[contador]=false;
-                    contador++;
                 }
                 if(controlador_fin.clases[i].get(j).contains("new")&& !controlador_fin.clases[i].get(j).contains("[]"))
                 {
@@ -101,28 +106,21 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     temp1 = temp1.replace("-","");
                     temp1 = temp1.replace("#","");
                     temp1 = temp1.trim();
-                    controlador_fin.compos.get(i).put(controlador_fin.clases[i].get(0), temp1);
                     uml.cuadros.clase1_compo=i;
-                    agregacion[contador]=false;
+                    for(h=0;h<controlador_fin.num_clases;h++)
+                    {
+                        if(controlador_fin.clases[h].get(0).equals(temp1))
+                        {
+                            uml.cuadros.clase2_compo=h;
+                        }
+                    }
+                    controlador_fin.compos.get(i).put(controlador_fin.clases[uml.cuadros.clase1_compo].get(0), controlador_fin.clases[uml.cuadros.clase2_compo].get(0));                    
                     composicion[contador]=true;
-                    contador++;
                 }
+                contador++;
             }
         }
-        for(h=0;h<controlador_fin.num_clases;h++)
-        {
-            if(controlador_fin.clases[h].get(0).equals(temp1))
-            {
-                uml.cuadros.clase2_compo=h;
-            }
-        }
-        for(h=0;h<controlador_fin.num_clases;h++)
-        {
-            if(controlador_fin.clases[h].get(0).equals(temp3))
-            {
-                uml.cuadros.clase2_agrega=h;
-            }
-        }        
+              
         cuadros.agregacion=this.agregacion;
         cuadros.composicion=this.composicion;
     }
