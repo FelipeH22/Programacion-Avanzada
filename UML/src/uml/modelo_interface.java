@@ -6,4 +6,5 @@ public interface modelo_interface {
     public abstract void evalua_instancias();
     public abstract void evalua_composicion();
     public abstract void evalua_herencias();
+    public abstract void evalua_cardinalidad();
 }

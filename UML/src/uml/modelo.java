@@ -194,15 +194,32 @@ public class modelo extends modelo_abstract implements modelo_interface{
                     contador2++;
                 }
             //}
-        }
-        for(h=0;h<controlador_fin.num_clases;h++)
-        {
-            if(controlador_fin.clases[h].get(0).equals(arrOfStr[1].trim()))
-            {
-                uml.cuadros.clase2_extends=h;
-            }
-        }        
+        }    
         cuadros.i_mplements=this.i_mplements;
         cuadros.e_xtends=this.e_xtends;
     }
+    
+   @Override
+   public void evalua_cardinalidad(){
+       for(i=0;i<controlador_fin.num_clases;i++)
+       {
+            int ont;
+            for(j=0;j<controlador_fin.instancias[i].size();j++)
+            {
+                controlador_fin.instancias[i].set(j, controlador_fin.instancias[i].get(j).replace("+", ""));
+                controlador_fin.instancias[i].set(j, controlador_fin.instancias[i].get(j).replace("new", ""));
+                controlador_fin.instancias[i].set(j, controlador_fin.instancias[i].get(j).trim());
+                if(controlador_fin.instancias[i].get(j).contains("[]"))
+                {
+                    card[i].add("*");
+                }   
+            }
+            for(h=0;h<controlador_fin.instancias[i].size();h++)
+            {
+                /*if(controlador_fin.instancias[i].get(j)
+                card[i].add()*/
+            }
+       }
+       
+   }
 }
