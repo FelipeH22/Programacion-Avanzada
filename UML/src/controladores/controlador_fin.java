@@ -56,7 +56,7 @@ public class controlador_fin implements ActionListener{
         m.evalua_instancias();
         m.llena_arrays();
         m.evalua_composicion();   
-        //m.evalua_herencias();
+        m.evalua_herencias();
         v.setVisible(false);
         c.componentes();
         c.oyentes(new controlador_back(c));  
