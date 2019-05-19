@@ -21,5 +21,8 @@ public class controlador implements ActionListener{
         n=Integer.parseInt(v.n.getText());
         palabra=v.palabra.getText();
         m.calcula();
+        v.z.setText("z = "+Integer.toString(m.z));
+        v.s.setText("s = "+Integer.toString(m.s));
+        v.num_palabra.setText(palabra+" = "+Integer.toString(m.numencriptado));
     }
 }

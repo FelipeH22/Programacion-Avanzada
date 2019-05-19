@@ -66,14 +66,12 @@ public class vista extends vista_abstract implements vista_interface{
     
     @Override
     public void resultados(){
-        p_resultado.setBounds(10, 250, 150, 20);
-        panel.add(p_resultado);
-        q_resultado.setBounds(10, 280, 150, 20);
-        panel.add(q_resultado);
-        n_resultado.setBounds(10, 310, 150, 20);
-        panel.add(n_resultado);
-        palabra_resultado.setBounds(10, 340, 150, 20);
-        panel.add(palabra_resultado);
+        z.setBounds(10, 250, 150, 20);
+        panel.add(z);
+        s.setBounds(10, 280, 150, 20);
+        panel.add(s);
+        num_palabra.setBounds(10, 310, 150, 20);
+        panel.add(num_palabra);
     }
     
     public void oyentes(controlador c){

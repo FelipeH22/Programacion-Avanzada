@@ -6,7 +6,8 @@ public class modelo extends modelo_abstract implements modelo_interface{
     public void calcula(){
         leer_variables();       
         calcula_s_z();
-        //for(i=0;i<letras.length;i++)
+        recorre_array();
+        //for(i=0;i<palabra.length();i++)
         //{
             bits();
             ASCII();
