@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 public class controlador implements ActionListener{
     vista v = new vista();
     modelo m = new modelo();
-    public int p,q,n;
-    String palabra;
+    public static int p,q,n;
+    public static String palabra;
     
     public controlador(vista v, modelo m){
         this.v=v;
@@ -20,6 +20,6 @@ public class controlador implements ActionListener{
         q=Integer.parseInt(v.q.getText());
         n=Integer.parseInt(v.n.getText());
         palabra=v.palabra.getText();
-        System.out.println(palabra);
+        m.calcula();
     }
 }
