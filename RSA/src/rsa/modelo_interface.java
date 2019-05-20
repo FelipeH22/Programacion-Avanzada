@@ -7,6 +7,7 @@ public interface modelo_interface {
     public abstract void leer_variables();
     public abstract void ASCII();
     public abstract void bits();
+    public abstract void bitsS();
     public abstract void encriptado();
     public abstract void desencriptado();    
 }

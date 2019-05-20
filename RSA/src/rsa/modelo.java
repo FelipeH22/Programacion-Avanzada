@@ -7,13 +7,13 @@ public class modelo extends modelo_abstract implements modelo_interface{
         leer_variables();       
         calcula_s_z();
         recorre_array();
-        //for(i=0;i<palabra.length();i++)
-        //{
+        for(i=0;i<palabra.length();i++)
+        {
             bits();
             ASCII();
-            encriptado();
-            desencriptado();
-        //}
+            encriptado();    
+        }
+        desencriptado();
         
     }
     
@@ -29,12 +29,14 @@ public class modelo extends modelo_abstract implements modelo_interface{
         while((n * s) % fi != 1){
             s=s+1;
         }
+        clavePrivada=s;
     }
     
     @Override
     public void ASCII(){
         for (int x=0;x<palabra.length();x++){
             arregloASCII[x] = palabra.codePointAt(x);
+            arregloletras[x]= palabra.charAt(x);
             //System.out.println(palabra.charAt(x) + " = " + palabra.codePointAt(x));;   
         }       
     }
@@ -55,34 +57,58 @@ public class modelo extends modelo_abstract implements modelo_interface{
     
     @Override
     public void encriptado(){
-        int []arreglo2 = new int[k];
-        arreglo2[0]=arregloASCII[0];
+        double []arreglo2 = new double[k];
+        arreglo2[0]=arregloASCII[ascii];
         for(int j=1; j<k; j++){
             arreglo2[j]=((( arreglo2[j-1]) % z)*((arreglo2[j-1]) % z)) % z;
         }
-        k=k-1;
         int j=0;
-        while(j<=k)
+        while(j<k)
         {
             if(arreglo[j] == 1){
                 if(j == 0)
+          
                 {
                     numencriptado = arreglo2[j];
                 }
                 else{
                     numencriptado = (numencriptado * arreglo2[j])%z;
                 }
-            
             }else{
                 
             }
             j++;
         }
-        System.out.println(palabra + " = "+numencriptado);
-    
+        System.out.println(arregloletras[ascii] + " = "+numencriptado);
+        ascii++;
     }
+    
     @Override
     public void desencriptado(){
+        /*for(i=0;i<this.arreglo.length;i++)
+        {
+            arreglo[i]=0;
+        }
+        for(i=0;i<this.arreglo2.length;i++)
+        {
+            arreglo2[i]=0;
+        }
+        for(i=0;i<this.arregloASCII.length;i++)
+        {
+            arregloASCII[i]=0;
+        }
+        System.out.println("Desencriptando.....");
+        z=s;
+        this.ASCII();
+        this.bits();
+        this.encriptado();*/
+        z=s;
+        
+        
+    }
+    
+    @Override
+    public void bitsS(){
         
     }
     @Override

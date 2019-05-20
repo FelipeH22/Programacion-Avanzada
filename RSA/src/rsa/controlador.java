@@ -23,6 +23,6 @@ public class controlador implements ActionListener{
         m.calcula();
         v.z.setText("z = "+Integer.toString(m.z));
         v.s.setText("s = "+Integer.toString(m.s));
-        v.num_palabra.setText(palabra+" = "+Integer.toString(m.numencriptado));
+        v.num_palabra.setText(palabra+" = "+Double.toString(m.numencriptado));
     }
 }
