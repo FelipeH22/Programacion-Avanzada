@@ -1,5 +1,10 @@
 package rsa;
 
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static sun.security.krb5.Confounder.bytes;
+
 public class modelo extends modelo_abstract implements modelo_interface{
     
     @Override
@@ -14,7 +19,6 @@ public class modelo extends modelo_abstract implements modelo_interface{
             encriptado();    
         }
         desencriptado();
-        
     }
     
     @Override
@@ -102,7 +106,8 @@ public class modelo extends modelo_abstract implements modelo_interface{
         this.ASCII();
         this.bits();
         this.encriptado();*/
-        z=s;
+        int asciii = palabra.toCharArray()[0];
+        System.out.println("resultado = "+asciii);
         
         
     }
