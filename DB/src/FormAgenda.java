@@ -1,5 +1,3 @@
-package db;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -19,7 +17,7 @@ public class FormAgenda implements ActionListener{
     JLabel labelId,labelNombre,labelApellido,labelTelefonoDomicilio,
     labelTelefonoOficina,labelDireccionDomicilio,labelDireccionOficina,
     labelCelular,labelCorreo;
-    JTextField textId,textNombre,textNota1,textNota2,textNota3,
+    JTextField textId,textNombre,textApellido,textTelefonoDomicilio,textTelefonoOficina,
     textDireccionDomicilio,textDireccionOficina,textCelular,textCorreo;
     JButton botonNuevoContacto,botonGuardarContacto,botonEditarContacto,botonBorrarContacto;
 
@@ -79,25 +77,25 @@ public class FormAgenda implements ActionListener{
         labelApellido.setBounds(x+350,y,labelAncho,labelAlto);
         panelInformacion.add(labelApellido);
 
-        textNota1 = new JTextField();
-        textNota1.setBounds(x+510,y,textAncho,textAlto);
-        panelInformacion.add(textNota1);
+        textApellido = new JTextField();
+        textApellido.setBounds(x+510,y,textAncho,textAlto);
+        panelInformacion.add(textApellido);
         y+=30;
         labelTelefonoDomicilio = new JLabel("Telefono Domicilio",SwingConstants.RIGHT);
         labelTelefonoDomicilio.setBounds(x,y,labelAncho,labelAlto);
         panelInformacion.add(labelTelefonoDomicilio);
 
-        textNota2 = new JTextField();
-        textNota2.setBounds(x+160,y,textAncho,textAlto);
-        panelInformacion.add(textNota2);
+        textTelefonoDomicilio = new JTextField();
+        textTelefonoDomicilio.setBounds(x+160,y,textAncho,textAlto);
+        panelInformacion.add(textTelefonoDomicilio);
 
         labelTelefonoOficina = new JLabel("Telefono Oficina",SwingConstants.RIGHT);
         labelTelefonoOficina.setBounds(x+350,y,labelAncho,labelAlto);
         panelInformacion.add(labelTelefonoOficina);
 
-        textNota3 = new JTextField();
-        textNota3.setBounds(x+510,y,textAncho,textAlto);
-        panelInformacion.add(textNota3);
+        textTelefonoOficina = new JTextField();
+        textTelefonoOficina.setBounds(x+510,y,textAncho,textAlto);
+        panelInformacion.add(textTelefonoOficina);
 
         y+=30;
         labelDireccionDomicilio = new JLabel("Dirreción Domicilio",SwingConstants.RIGHT);
@@ -182,9 +180,9 @@ public class FormAgenda implements ActionListener{
                     if(String.valueOf(contactos[i].getId()).equals(
                     String.valueOf(tablaContactos.getValueAt(fila, 0)))){
                     textNombre.setText(contactos[i].getNombre());
-                    textNota1.setText(Float.toString(contactos[i].getNota1()));
-                    textNota2.setText(Float.toString(contactos[i].getNota2()));
-                    textNota3.setText(Float.toString(contactos[i].getNota3()));
+                    textApellido.setText(Float.toString(contactos[i].getNota1()));
+                    textTelefonoDomicilio.setText(Float.toString(contactos[i].getNota2()));
+                    textTelefonoOficina.setText(Float.toString(contactos[i].getNota3()));
                     }
 
                 }
@@ -217,9 +215,9 @@ public class FormAgenda implements ActionListener{
                 botonGuardarContacto.setEnabled(false);
                 textId.setEditable(false);
                 textNombre.setEditable(false);
-                textNota1.setEditable(false);
-                textNota2.setEditable(false);
-                textNota3.setEditable(false);
+                textApellido.setEditable(false);
+                textTelefonoDomicilio.setEditable(false);
+                textTelefonoOficina.setEditable(false);
                 textDireccionDomicilio.setEditable(false);
                 textDireccionOficina.setEditable(false);
                 textCorreo.setEditable(false);
@@ -232,9 +230,9 @@ public class FormAgenda implements ActionListener{
                 botonGuardarContacto.setEnabled(true);
                 textId.setEditable(false);
                 textNombre.setEditable(true);
-                textNota1.setEditable(true);
-                textNota2.setEditable(true);
-                textNota3.setEditable(true);
+                textApellido.setEditable(true);
+                textTelefonoDomicilio.setEditable(true);
+                textTelefonoOficina.setEditable(true);
                 textDireccionDomicilio.setEditable(true);
                 textDireccionOficina.setEditable(true);
                 textCorreo.setEditable(true);
@@ -247,9 +245,9 @@ public class FormAgenda implements ActionListener{
                 botonGuardarContacto.setEnabled(false);
                 textId.setEditable(false);
                 textNombre.setEditable(false);
-                textNota1.setEditable(false);
-                textNota2.setEditable(false);
-                textNota3.setEditable(false);
+                textApellido.setEditable(false);
+                textTelefonoDomicilio.setEditable(false);
+                textTelefonoOficina.setEditable(false);
                 textDireccionDomicilio.setEditable(false);
                 textDireccionOficina.setEditable(false);
                 textCorreo.setEditable(false);
@@ -262,9 +260,9 @@ public class FormAgenda implements ActionListener{
                 botonGuardarContacto.setEnabled(true);
                 textId.setEditable(false);
                 textNombre.setEditable(true);
-                textNota1.setEditable(true);
-                textNota2.setEditable(true);
-                textNota3.setEditable(true);
+                textApellido.setEditable(true);
+                textTelefonoDomicilio.setEditable(true);
+                textTelefonoOficina.setEditable(true);
                 textDireccionDomicilio.setEditable(true);
                 textDireccionOficina.setEditable(true);
                 textCorreo.setEditable(true);
@@ -276,9 +274,13 @@ public class FormAgenda implements ActionListener{
     public void limpiarCampos(){
         textId.setText("");
         textNombre.setText("");
-        textNota1.setText("");
-        textNota2.setText("");
-        textNota3.setText("");
+        textApellido.setText("");
+        textTelefonoDomicilio.setText("");
+        textTelefonoOficina.setText("");
+        textDireccionDomicilio.setText("");
+        textDireccionOficina.setText("");
+        textCorreo.setText("");
+        textCelular.setText("");
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -288,6 +290,8 @@ public class FormAgenda implements ActionListener{
             System.exit(-1);
         }
         if(accion.equals("Acerca de ...")){
+            DialogAcerca a = new DialogAcerca(null,false);
+            a.setVisible(true);
         }
         if(accion.equals("Nuevo Contacto")){
             limpiarCampos();
@@ -300,10 +304,9 @@ public class FormAgenda implements ActionListener{
         if(this.estado==1){
             Contacto c = new Contacto();
             c.setNombre(textNombre.getText());
-            c.setNota1(Float.valueOf(textNota1.getText()));
-            c.setNota2(Float.valueOf(textNota2.getText()));
-            c.setNota3(Float.valueOf(textNota3.getText()));
-            
+            c.setNota1(Float.valueOf(textApellido.getText()));
+            c.setNota2(Float.valueOf(textTelefonoDomicilio.getText()));
+            c.setNota3(Float.valueOf(textTelefonoOficina.getText()));
             int r = dbc.insertarContacto(c);
             if(r>0){
                 Object[] newRow={r,c.getNombre(),c.getNota1(),c.getNota2(),c.getNota3()};
@@ -314,9 +317,9 @@ public class FormAgenda implements ActionListener{
             Contacto c = new Contacto();
             c.setId(Integer.parseInt(textId.getText(),10));
             c.setNombre(textNombre.getText());
-            c.setNota1(Float.valueOf(textNota1.getText()));
-            c.setNota2(Float.valueOf(textNota2.getText()));
-            c.setNota3(Float.valueOf(textNota3.getText()));
+            c.setNota1(Float.valueOf(textApellido.getText()));
+            c.setNota2(Float.valueOf(textTelefonoDomicilio.getText()));
+            c.setNota3(Float.valueOf(textTelefonoOficina.getText()));
             int r = dbc.actualizarContacto(c);
             if(r>0){
                 modeloTabla.setValueAt(c.getNombre(), fila, 1);

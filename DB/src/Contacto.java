@@ -1,4 +1,4 @@
-package db;
+
 
 
 public class Contacto {
@@ -46,7 +46,7 @@ public class Contacto {
 
     public void setNota3(float nota3) {
         this.nota3 = nota3;
-    }   
+    }
 }
 
     
