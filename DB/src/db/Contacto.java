@@ -1,11 +1,13 @@
 package db;
 
-public class estudiantes {
+
+public class Contacto {
     int id;
     String nombre;
     float nota1;
     float nota2;
     float nota3;
+
     public int getId() {
         return id;
     }
@@ -30,19 +32,22 @@ public class estudiantes {
         this.id = id;
     }
 
-    public void setNombre(String Nombre) {
-        this.nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setNota1(float Nota1) {
-        this.nota1 = Nota1;
+    public void setNota1(float nota1) {
+        this.nota1 = nota1;
     }
 
-    public void setNota2(float Nota2) {
-        this.nota2 = Nota2;
+    public void setNota2(float nota2) {
+        this.nota2 = nota2;
     }
 
-    public void setNota3(float Nota3) {
-        this.nota3 = Nota3;
-    }
+    public void setNota3(float nota3) {
+        this.nota3 = nota3;
+    }   
 }
+
+    
+

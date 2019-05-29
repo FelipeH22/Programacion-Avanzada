@@ -1,15 +1,15 @@
 package db;
 
 import java.sql.*;
-public class conexion {
+public class DBConexion {
     static String bd = "estudiantes";
     static String login = "root";
-    static String password = "mysql2018";
+    static String password = "mysql2019";
     static String url = "jdbc:mysql://localhost/"+bd;
 
     Connection conexion = null;
 
-    public conexion() {
+    public DBConexion() {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(url,login,password);
@@ -29,3 +29,4 @@ public class conexion {
        conexion = null;
     }
 }
+
