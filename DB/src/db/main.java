@@ -1,18 +1,12 @@
 package db;
 
 
-import db.FormAgenda;
-import db.DBContactos;
-import db.DBCitas;
-import db.estudiante;
-import db.Citas;
-
 public class main {
     
     
     public static void main(String[] args) {
         FormAgenda f = new FormAgenda();
-        DBContactos dbcontactos = new DBContactos();
+        /*DBContactos dbcontactos = new DBContactos();
         estudiante[] contactos = dbcontactos.getContactos();
         
         
@@ -22,7 +16,7 @@ public class main {
             System.out.println("Nombre: " + contacto.getNombre() + " " + contacto.getNota1());
         }
          
-        System.out.println("\n\n");
+        System.out.println("\n\n");*/
     }
 }
 
