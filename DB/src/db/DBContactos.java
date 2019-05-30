@@ -1,3 +1,7 @@
+package db;
+
+import db.DBConexion;
+import db.estudiante;
 import java.sql.*;
 
 public class DBContactos {
@@ -7,11 +11,11 @@ public class DBContactos {
         cn = new DBConexion();
     }
 
-    public Contacto[] getContactos(){
+    public estudiante[] getContactos(){
         int registros = 0;
         try{
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT count(1) as cont" +
-            " FROM estudiantest ");
+            " FROM estudiantes ");
             ResultSet res = pstm.executeQuery();
             res.next();
             registros = res.getInt("cont");
@@ -19,19 +23,19 @@ public class DBContactos {
         }catch(SQLException e){
             System.out.println(e);
         }
-            Contacto[] data = new Contacto[registros];
+            estudiante[] data = new estudiante[registros];
         try{
         PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id, " +
                                                                     " nombre, " +
                                                                     " nota1, " +
                                                                     " nota2, " +
                                                                     " nota3," +
-                                                                    " FROM estudiantest ");
+                                                                    " FROM estudiantes");
 
         ResultSet res = pstm.executeQuery();
         int i = 0;
         while(res.next()){
-            data[i] = new Contacto();
+            data[i] = new estudiante();
             data[i].setId(res.getInt("id"));
             data[i].setNombre(res.getString("nombre"));
             data[i].setNota1(res.getFloat("nota1"));
@@ -46,12 +50,12 @@ public class DBContactos {
             return data;
         }
     
-    public int insertarContacto(Contacto c){
+    public int insertarContacto(estudiante c){
             int cont_usuario = -1;
             int resultado = 0;//no hubo errores de validacion
             try{
                 PreparedStatement pstm = cn.getConexion().prepareStatement("select count(1) as cont " +
-                " from estudiantest " +
+                " from estudiantes " +
                 " where nombre = ? ");
                 pstm.setString(1, c.getNombre());
                 ResultSet res = pstm.executeQuery();
@@ -59,7 +63,7 @@ public class DBContactos {
                 cont_usuario = res.getInt("cont");
                 res.close();
                 if(cont_usuario==0){
-                    pstm = cn.getConexion().prepareStatement("insert into estudiantest (nombre, " +
+                    pstm = cn.getConexion().prepareStatement("insert into estudiantes (nombre, " +
                                                                 " nota1," +
                                                                 " nota2," +
                                                                 " nota3," +
@@ -84,10 +88,10 @@ public class DBContactos {
                     return resultado;
                 }
 
-    public int actualizarContacto(Contacto c){
+    public int actualizarContacto(estudiante c){
     int resultado = 0;
     try{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update estudiantest " + " set nombre = ?, " +
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update estudiantes " + " set nombre = ?, " +
                                                                     " nota1 = ?," +
                                                                     " nota2 = ?," +
                                                                     " nota3 = ?," +
@@ -104,10 +108,10 @@ public class DBContactos {
         return resultado;
     }
 
-    public int borrarContacto(Contacto c){
+    public int borrarContacto(estudiante c){
         int resultado = 0;
         try{
-            PreparedStatement pstm = cn.getConexion().prepareStatement("delete from estudiantest " +
+            PreparedStatement pstm = cn.getConexion().prepareStatement("delete from estudiantes " +
             " where id = ?");
             pstm.setInt(1, c.getId());
             resultado = pstm.executeUpdate();

@@ -1,10 +1,12 @@
+package db;
+
 
 
 import java.sql.*;
 public class DBConexion {
     static String bd = "estudiantes";
     static String login = "root";
-    static String password = "mysql2019";
+    static String password = "felipe22";
     static String url = "jdbc:mysql://localhost/"+bd;
 
     Connection conexion = null;

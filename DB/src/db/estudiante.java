@@ -1,7 +1,9 @@
+package db;
 
 
 
-public class Contacto {
+
+public class estudiante {
     int id;
     String nombre;
     float nota1;

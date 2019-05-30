@@ -1,3 +1,6 @@
+package db;
+
+import db.Citas;
 import java.sql.*;
 
 public class DBCitas {
