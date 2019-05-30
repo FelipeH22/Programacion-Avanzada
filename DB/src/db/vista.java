@@ -1,13 +1,13 @@
 package db;
 
-import db.DBContactos;
+import db.DBEstudiantes;
 import db.estudiante;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class FormAgenda implements ActionListener{
+public class vista implements ActionListener{
     JFrame frame;
     JPanel panel;
     JMenuBar menuBar;
@@ -23,23 +23,21 @@ public class FormAgenda implements ActionListener{
     JTextField textId,textNombre,textNota1,textNota2,textNota3;
     JButton botonNuevoContacto,botonGuardarContacto,botonEditarContacto,botonBorrarContacto;
 
-    DBContactos dbc = new DBContactos();
+    DBEstudiantes dbc = new DBEstudiantes();
     estudiante[] contactos;
     int estado=0;
     int fila;
-    public FormAgenda() {
+    public vista() {
         initComponents();
     }
 
     public void initComponents(){
-        frame = new JFrame("Agenda de Contactos");
+        frame = new JFrame("Notas estudiantes");
+        frame.setLocationRelativeTo(null);
         menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         menu = new JMenu("Opciones");
         menuBar.add(menu);
-        menuItem = new JMenuItem("Acerca de ...");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
         menuItem = new JMenuItem("Salir");
         menuItem.addActionListener(this);
         menu.add(menuItem);
@@ -120,15 +118,15 @@ public class FormAgenda implements ActionListener{
 
         contactos = dbc.getContactos();
         Object[][] data = new Object[contactos.length][5];
-        /*for (int c=0;c<contactos.length;c++){
+        for (int c=0;c<contactos.length;c++){
             data[c][0]=contactos[c].getId();
             data[c][1]=contactos[c].getNombre();
             data[c][2]=contactos[c].getNota1();
             data[c][3]=contactos[c].getNota2();
             data[c][4]=contactos[c].getNota3();
-        }*/
+        }
 
-    String[] columNames = {"id","nombres","nota1","nota2","nota3"};
+    String[] columNames = {"id_estudiantes","Nombres","Nota1","Nota2","Nota3"};
 
     modeloTabla= new DefaultTableModel(data, columNames);
 

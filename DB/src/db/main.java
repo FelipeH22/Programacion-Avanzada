@@ -5,7 +5,7 @@ public class main {
     
     
     public static void main(String[] args) {
-        FormAgenda f = new FormAgenda();
+        vista f = new vista();
         /*DBContactos dbcontactos = new DBContactos();
         estudiante[] contactos = dbcontactos.getContactos();
         
