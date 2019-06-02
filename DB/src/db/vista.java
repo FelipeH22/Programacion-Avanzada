@@ -1,13 +1,14 @@
 package db;
 
-import db.DBEstudiantes;
-import db.estudiante;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class vista implements ActionListener{
+    DBConexion cn = new DBConexion();
     JFrame frame;
     JPanel panel;
     JMenuBar menuBar;
@@ -33,11 +34,27 @@ public class vista implements ActionListener{
 
     public void initComponents(){
         frame = new JFrame("Notas estudiantes");
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;
+        frame.setSize((width/2)+20, (height/2)+20);		
         frame.setLocationRelativeTo(null);
         menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         menu = new JMenu("Opciones");
         menuBar.add(menu);
+        menuItem = new JMenuItem("Borrar Tabla");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Borrar Base de Datos");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Crear Base de Datos");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Crear Tabla");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
         menuItem = new JMenuItem("Salir");
         menuItem.addActionListener(this);
         menu.add(menuItem);
@@ -232,8 +249,87 @@ public class vista implements ActionListener{
         String accion = e.getActionCommand();
         System.out.println(accion);
         if(accion.equals("Salir")){
-            System.exit(-1);
+            frame.dispose();
         }
+        if(accion.equals("Borrar Tabla")){
+            String password = JOptionPane.showInputDialog(null, "Password");
+            if(password.equals(DBConexion.password))
+            {
+                JOptionPane.showMessageDialog(null, "Eliminando Tabla");
+                try{
+                    PreparedStatement pstm;
+                    pstm = cn.getConexion().prepareStatement("drop table estudiantes");
+                    int res = pstm.executeUpdate();                
+                }catch(SQLException h){
+                    System.out.println(h);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Acceso Denegado");
+            }            
+        }
+        if(accion.equals("Borrar Base de Datos")){
+            String password2 = JOptionPane.showInputDialog(null, "PasswordDB");
+            if(password2.equals(DBConexion.password))
+            {
+                JOptionPane.showMessageDialog(null, "Eliminando Base de datos");
+                try{
+                    PreparedStatement pstm;
+                    pstm = cn.getConexion().prepareStatement("drop database estudiantes");
+                    int res = pstm.executeUpdate();                
+                }catch(SQLException h){
+                    System.out.println(h);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Acceso Denegado");
+            }            
+        }
+        /////////////////////Crear Base de Datos////////////////////////////////////////////////////////////////////////////////////////
+        if(accion.equals("Crear Base de Datos")){
+            String password2 = JOptionPane.showInputDialog(null, "PasswordDB");
+            if(password2.equals(DBConexion.password))
+            {
+                String Nombre_base = JOptionPane.showInputDialog(null, "Nombre DB");
+                try{
+                    PreparedStatement pstm;
+                    pstm = cn.getConexion().prepareStatement("create database "+Nombre_base);
+                    int res = pstm.executeUpdate();                
+                }catch(SQLException h){
+                    System.out.println(h);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Acceso Denegado");
+            }            
+        }
+        //////////////////////////////////////Crea Tabla//////////////////////////////////////////////////////////////////////////////
+        if(accion.equals("Crear Tabla")){
+            String password3 = JOptionPane.showInputDialog(null, "PasswordDB");
+            if(password3.equals(DBConexion.password))
+            {
+                String Nombre_DB = JOptionPane.showInputDialog(null, "Nombre DB a insertar");
+                String Nombre_Tabla = JOptionPane.showInputDialog(null, "Nombre Tabla");
+                try{
+                    PreparedStatement pstm,pstm2;
+                    pstm2 = cn.getConexion().prepareStatement("use "+Nombre_DB);
+                    int res2 = pstm2.executeUpdate();
+                    pstm = cn.getConexion().prepareStatement("CREATE TABLE "+ Nombre_Tabla +"( id INT PRIMARY KEY, nombre VARCHAR(20) );");
+                    int res = pstm.executeUpdate();   
+                    JOptionPane.showMessageDialog(null, "Tabla Creada");
+                }catch(SQLException h){
+                    System.out.println(h);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Acceso Denegado");
+            }            
+        }
+        /////////////////////////
         if(accion.equals("Nuevo Contacto")){
             limpiarCampos();
             this.estado=1;
