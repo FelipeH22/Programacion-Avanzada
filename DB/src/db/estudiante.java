@@ -9,6 +9,7 @@ public class estudiante {
     float nota1;
     float nota2;
     float nota3;
+    float promedio;
 
     public int getId() {
         return id;
@@ -29,6 +30,10 @@ public class estudiante {
     public float getNota3() {
         return nota3;
     }
+    
+    public float getPromedio(){
+        return promedio;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -48,6 +53,10 @@ public class estudiante {
 
     public void setNota3(float nota3) {
         this.nota3 = nota3;
+    }
+    
+    public void setPromedio(float promedio){
+        this.promedio = promedio;
     }
 }
 

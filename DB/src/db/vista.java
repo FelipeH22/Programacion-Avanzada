@@ -23,6 +23,7 @@ public class vista implements ActionListener{
     labelNota3;
     JTextField textId,textNombre,textNota1,textNota2,textNota3;
     JButton botonNuevoContacto,botonGuardarContacto,botonEditarContacto,botonBorrarContacto;
+    JButton botonPromedio;
 
     DBEstudiantes dbc = new DBEstudiantes();
     estudiante[] contactos;
@@ -62,7 +63,7 @@ public class vista implements ActionListener{
         panelInformacion = new JPanel(null);
         panelInformacion.setLayout(null);
         pestana = new JTabbedPane();
-        pestana.addTab("Información de contacto", panelInformacion);
+        pestana.addTab("Información de estudiante", panelInformacion);
 
         int y = 5;
         int x = 10;
@@ -114,24 +115,29 @@ public class vista implements ActionListener{
         y+=30;
 
         y+=60;
-        botonNuevoContacto = new JButton("Nuevo Contacto");
-        botonNuevoContacto.setBounds(x,y,labelAncho,50);
+        botonNuevoContacto = new JButton("Nuevo estudiante");
+        botonNuevoContacto.setBounds(x,y,labelAncho-20,30);
         panelInformacion.add(botonNuevoContacto);
         botonNuevoContacto.addActionListener(this);
 
-        botonGuardarContacto = new JButton("Guardar Contacto");
-        botonGuardarContacto.setBounds(x+200,y,labelAncho,50);
+        botonGuardarContacto = new JButton("Guardar estudiante");
+        botonGuardarContacto.setBounds(x+150,y,labelAncho-20,30);
         panelInformacion.add(botonGuardarContacto);
         botonGuardarContacto.addActionListener(this);
-        botonEditarContacto = new JButton("Editar Contacto");
-        botonEditarContacto.setBounds(x+400,y,labelAncho,50);
+        botonEditarContacto = new JButton("Editar estudiante");
+        botonEditarContacto.setBounds(x+300,y,labelAncho-20,30);
         panelInformacion.add(botonEditarContacto);
         botonEditarContacto.addActionListener(this);
 
-        botonBorrarContacto = new JButton("Borrar Contacto");
-        botonBorrarContacto.setBounds(x+600,y,labelAncho,50);
+        botonBorrarContacto = new JButton("Borrar estudiante");
+        botonBorrarContacto.setBounds(x+450,y,labelAncho-20,30);
         panelInformacion.add(botonBorrarContacto);
         botonBorrarContacto.addActionListener(this);
+        
+        botonPromedio = new JButton("Promedio estudiante");
+        botonPromedio.setBounds(x+600,y,labelAncho-20,30);
+        panelInformacion.add(botonPromedio);
+        botonPromedio.addActionListener(this);
 
         contactos = dbc.getContactos();
         Object[][] data = new Object[contactos.length][5];
@@ -181,8 +187,6 @@ public class vista implements ActionListener{
     frame.setSize(800, 500);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
-    JFrame.setDefaultLookAndFeelDecorated(true);
-
     frame.setVisible(true);
 
     alterarEstado();
@@ -195,6 +199,7 @@ public class vista implements ActionListener{
                 botonBorrarContacto.setEnabled(false);
                 botonEditarContacto.setEnabled(false);
                 botonGuardarContacto.setEnabled(false);
+                botonPromedio.setEnabled(false);
                 textId.setEditable(false);
                 textNombre.setEditable(false);
                 textNota1.setEditable(false);
@@ -205,6 +210,7 @@ public class vista implements ActionListener{
                 botonNuevoContacto.setEnabled(false);
                 botonBorrarContacto.setEnabled(false);
                 botonEditarContacto.setEnabled(false);
+                botonPromedio.setEnabled(false);
                 botonGuardarContacto.setEnabled(true);
                 textId.setEditable(false);
                 textNombre.setEditable(true);
@@ -216,6 +222,7 @@ public class vista implements ActionListener{
                 botonNuevoContacto.setEnabled(false);
                 botonBorrarContacto.setEnabled(true);
                 botonEditarContacto.setEnabled(true);
+                botonPromedio.setEnabled(true);
                 botonGuardarContacto.setEnabled(false);
                 textId.setEditable(false);
                 textNombre.setEditable(false);
@@ -227,6 +234,7 @@ public class vista implements ActionListener{
                 botonNuevoContacto.setEnabled(false);
                 botonBorrarContacto.setEnabled(false);
                 botonEditarContacto.setEnabled(false);
+                botonPromedio.setEnabled(false);
                 botonGuardarContacto.setEnabled(true);
                 textId.setEditable(false);
                 textNombre.setEditable(true);
@@ -330,14 +338,14 @@ public class vista implements ActionListener{
             }            
         }
         /////////////////////////
-        if(accion.equals("Nuevo Contacto")){
+        if(accion.equals("Nuevo estudiante")){
             limpiarCampos();
             this.estado=1;
         }
-        if(accion.equals("Editar Contacto")){
+        if(accion.equals("Editar estudiante")){
             this.estado=3;
         }
-    if(accion.equals("Guardar Contacto")){
+    if(accion.equals("Guardar estudiante")){
         if(this.estado==1){
             estudiante c = new estudiante();
             c.setNombre(textNombre.getText());
@@ -348,7 +356,7 @@ public class vista implements ActionListener{
             if(r>0){
                 Object[] newRow={r,c.getNombre(),c.getNota1(),c.getNota2(),c.getNota3()};
                 modeloTabla.addRow(newRow);
-                JOptionPane.showMessageDialog(null, "Contacto agregado");
+                JOptionPane.showMessageDialog(null, "Estudiante agregado");
             }
         }else if(this.estado==3){ 
             estudiante c = new estudiante();
@@ -370,7 +378,20 @@ public class vista implements ActionListener{
         limpiarCampos();
         this.estado=0;
     }
-    if(accion.equals("Borrar Contacto")){
+    //////////////////////////PROMEDIO//////////////////////////////
+    if(accion.equals("Promedio estudiante")){
+        estudiante c = new estudiante();
+        c.setId(Integer.parseInt(textId.getText(),10));
+        c.setNota1(Float.valueOf(textNota1.getText()));
+        c.setNota2(Float.valueOf(textNota2.getText()));
+        c.setNota3(Float.valueOf(textNota3.getText()));
+        float promedio;
+        promedio=(float) ((c.getNota1()*0.35)+(c.getNota2()*0.35)+(c.getNota3()*0.30));
+        JOptionPane.showMessageDialog(null,"El promedio del estudiante es: "+promedio);        
+        this.estado=0;
+    }
+    
+    if(accion.equals("Borrar estudiante")){
         estudiante c = new estudiante();
         c.setId(Integer.parseInt(textId.getText(),10));
         int r = dbc.borrarContacto(c);
