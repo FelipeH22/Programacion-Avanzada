@@ -1,9 +1,12 @@
 package db;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class DBEstudiantes {
     DBConexion cn;
+    String BD;
+    String Tabla;
 
     public DBEstudiantes() {
         cn = new DBConexion();
@@ -12,7 +15,11 @@ public class DBEstudiantes {
     public estudiante[] getContactos(){
         int registros = 0;
         try{
-            PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT count(1) as cont FROM estudiantes");
+            BD = JOptionPane.showInputDialog(null, "Nombre Base de datos");
+            Tabla = JOptionPane.showInputDialog(null,"Nombre Tabla");
+            PreparedStatement pstm2 = cn.getConexion().prepareStatement("use "+BD);
+            PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT count(1) as cont FROM "+Tabla);
+            ResultSet res2 = pstm2.executeQuery();
             ResultSet res = pstm.executeQuery();
             res.next();
             registros = res.getInt("cont");
@@ -22,7 +29,7 @@ public class DBEstudiantes {
         }
             estudiante[] data = new estudiante[registros];
         try{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_estudiantes, Nombre, Nota1, Nota2, Nota3 FROM estudiantes");
+        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_estudiantes, Nombre, Nota1, Nota2, Nota3 FROM "+Tabla);
 
         ResultSet res = pstm.executeQuery();
         int i = 0;
@@ -46,14 +53,14 @@ public class DBEstudiantes {
             int cont_usuario = -1;
             int resultado = 0;//no hubo errores de validacion
             try{
-                PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT count(1) as cont FROM estudiantes where Nombre = ? ");
+                PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT count(1) as cont FROM "+Tabla+" where Nombre = ? ");
                 pstm.setString(1, c.getNombre());
                 ResultSet res = pstm.executeQuery();
                 res.next();
                 cont_usuario = res.getInt("cont");
                 res.close();
                 if(cont_usuario==0){
-                    pstm = cn.getConexion().prepareStatement("INSERT INTO estudiantes (Nombre, Nota1, Nota2, Nota3) values (?,?,?,?) ");
+                    pstm = cn.getConexion().prepareStatement("INSERT INTO "+Tabla+" (Nombre, Nota1, Nota2, Nota3) values (?,?,?,?) ");
                     pstm.setString(1, c.getNombre());
                     pstm.setString(2, Float.toString(c.getNota1()));
                     pstm.setString(3, Float.toString(c.getNota2()));
@@ -77,7 +84,7 @@ public class DBEstudiantes {
     public int actualizarContacto(estudiante c){
     int resultado = 0;
     try{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("UPDATE estudiantes set Nombre = ?, Nota1 = ?, Nota2 = ?, Nota3 = ? where id_estudiantes = ?");
+        PreparedStatement pstm = cn.getConexion().prepareStatement("UPDATE "+ Tabla +" set Nombre = ?, Nota1 = ?, Nota2 = ?, Nota3 = ? where id_estudiantes = ?");
         pstm.setString(1, c.getNombre());
         pstm.setString(2, Float.toString(c.getNota1()));
         pstm.setString(3, Float.toString(c.getNota2()));
@@ -93,7 +100,7 @@ public class DBEstudiantes {
     public int borrarContacto(estudiante c){
         int resultado = 0;
         try{
-            PreparedStatement pstm = cn.getConexion().prepareStatement("DELETE FROM estudiantes WHERE id_estudiantes = ?");
+            PreparedStatement pstm = cn.getConexion().prepareStatement("DELETE FROM "+Tabla+" WHERE id_estudiantes = ?");
             pstm.setInt(1, c.getId());
             resultado = pstm.executeUpdate();
         }catch(SQLException e){

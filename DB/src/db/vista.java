@@ -24,6 +24,7 @@ public class vista implements ActionListener{
     JTextField textId,textNombre,textNota1,textNota2,textNota3;
     JButton botonNuevoContacto,botonGuardarContacto,botonEditarContacto,botonBorrarContacto;
     JButton botonPromedio;
+    String[] columNames = {"id_estudiantes","Nombres","Nota1","Nota2","Nota3"};
 
     DBEstudiantes dbc = new DBEstudiantes();
     estudiante[] contactos;
@@ -149,7 +150,7 @@ public class vista implements ActionListener{
             data[c][4]=contactos[c].getNota3();
         }
 
-    String[] columNames = {"id_estudiantes","Nombres","Nota1","Nota2","Nota3"};
+    
 
     modeloTabla= new DefaultTableModel(data, columNames);
 
@@ -261,12 +262,16 @@ public class vista implements ActionListener{
         }
         if(accion.equals("Borrar Tabla")){
             String password = JOptionPane.showInputDialog(null, "Password");
+            String nameDB = JOptionPane.showInputDialog(null,"Nombre base de datos a operar");
+            String nameTabla = JOptionPane.showInputDialog(null,"Nombre tabla a eliminar");
             if(password.equals(DBConexion.password))
             {
                 JOptionPane.showMessageDialog(null, "Eliminando Tabla");
                 try{
-                    PreparedStatement pstm;
-                    pstm = cn.getConexion().prepareStatement("drop table estudiantes");
+                    PreparedStatement pstm,pstm2;
+                    pstm2 = cn.getConexion().prepareStatement("use "+nameDB);
+                    int res2 = pstm2.executeUpdate();
+                    pstm = cn.getConexion().prepareStatement("drop table "+nameTabla);
                     int res = pstm.executeUpdate();                
                 }catch(SQLException h){
                     System.out.println(h);
@@ -279,12 +284,13 @@ public class vista implements ActionListener{
         }
         if(accion.equals("Borrar Base de Datos")){
             String password2 = JOptionPane.showInputDialog(null, "PasswordDB");
+            String NombreDB = JOptionPane.showInputDialog(null,"Nombre DB a borrar");
             if(password2.equals(DBConexion.password))
             {
                 JOptionPane.showMessageDialog(null, "Eliminando Base de datos");
                 try{
                     PreparedStatement pstm;
-                    pstm = cn.getConexion().prepareStatement("drop database estudiantes");
+                    pstm = cn.getConexion().prepareStatement("drop database "+NombreDB);
                     int res = pstm.executeUpdate();                
                 }catch(SQLException h){
                     System.out.println(h);
@@ -308,6 +314,7 @@ public class vista implements ActionListener{
                 }catch(SQLException h){
                     System.out.println(h);
                 }
+                
             }
             else
             {
@@ -325,9 +332,11 @@ public class vista implements ActionListener{
                     PreparedStatement pstm,pstm2;
                     pstm2 = cn.getConexion().prepareStatement("use "+Nombre_DB);
                     int res2 = pstm2.executeUpdate();
-                    pstm = cn.getConexion().prepareStatement("CREATE TABLE "+ Nombre_Tabla +"( id INT PRIMARY KEY, nombre VARCHAR(20) );");
+                    pstm = cn.getConexion().prepareStatement("CREATE TABLE "+ Nombre_Tabla +"( id_estudiantes INT PRIMARY KEY NOT NULL AUTO_INCREMENT, Nombre VARCHAR(20), Nota1 FLOAT, Nota2 FLOAT, Nota3 FLOAT  );");
                     int res = pstm.executeUpdate();   
                     JOptionPane.showMessageDialog(null, "Tabla Creada");
+                    this.initComponents();
+                    //panel.repaint();
                 }catch(SQLException h){
                     System.out.println(h);
                 }
