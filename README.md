@@ -2,23 +2,23 @@
 
 Modelo vista controlador
 
-Deben existir tres clases principales, donde vista se encargue de la interfaz de usuario, controlador de la conexión con el teclado y ActionListeners en general y el modelo se encargue de llevar todas las operaciones y demás elementos necesarios para el programa
+Deben existir tres clases principales, donde vista se encargue de la interfaz de usuario, controlador de la conexiÃ³n con el teclado y ActionListeners en general y el modelo se encargue de llevar todas las operaciones y demÃ¡s elementos necesarios para el programa
 
 Principios S.O.L.I.D
 
 Cada clase se construye con una finalidad concreta.
-Según la sustitución de Liskov las clases derivadas se comportan como la clase base, es decir que se acepta una asignacion de la clase base a las derivadas
+SegÃºn la sustituciÃ³n de Liskov las clases derivadas se comportan como la clase base, es decir que se acepta una asignacion de la clase base a las derivadas
 
 	Creacion de una interfaz
 
-	Una interfaz se crea así:
+	Una interfaz se crea asÃ­:
 
 		"interface i {
 			int x=8;
 			void F();
 		}"
 
-	Se impleenta así:
+	Se impleenta asÃ­:
 
 		class A implements i{
 			int f()
@@ -46,6 +46,6 @@ Según la sustitución de Liskov las clases derivadas se comportan como la clase b
 			System.out.println(o2.f());
 		}
 	
-	Clases abstractas 
+Clases abstractas 
 
-	Pueden existir métodos abstractos, métodos normales, etc.
+Pueden existir mÃ©todos abstractos, mÃ©todos normales, etc.
