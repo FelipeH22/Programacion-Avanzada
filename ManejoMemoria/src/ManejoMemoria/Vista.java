@@ -8,12 +8,10 @@ package ManejoMemoria;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -22,11 +20,14 @@ import javax.swing.SwingConstants;
  * @author juane
  */
 public class Vista extends JFrame{
-    
+
     JPanel panel = new JPanel();
     JButton botoninicial = new JButton();
     public JTextField cajatexto = new JTextField();
+    public JTextField cajatexto2 = new JTextField();
     
+    public static JLabel g[];
+
     
     public Vista(){
         this.setSize(800,800);
@@ -42,6 +43,21 @@ public class Vista extends JFrame{
         CajasdeTexto();
         cuadroinicial();
         cuadro2();
+        
+       int i;
+        g = new JLabel[10];
+            for(i=0;i<10;i++)
+            {
+                g[i]=new JLabel();
+                g[i].setBounds(0, 0, 0, 0);
+           
+            }
+         for(i=0;i<10;i++)
+            {
+                panel.add(g[i]);
+            }
+            
+            
     }
     public void Panel(){
         this.getContentPane().add(panel);
@@ -57,28 +73,6 @@ public class Vista extends JFrame{
     }
     
     public void Botones(){
-        JRadioButton boton1 = new JRadioButton("First Fit", true);
-        boton1.setBounds(50, 20, 100, 20);
-        panel.add(boton1);
-        
-        JRadioButton boton2 = new JRadioButton("Next Fit", false);
-        boton2.setBounds(50, 50, 100, 20);
-        panel.add(boton2);
-        
-        JRadioButton boton3 = new JRadioButton("Best Fit", false);
-        boton3.setBounds(50, 80, 100, 20);
-        panel.add(boton3);
-        
-        JRadioButton boton4 = new JRadioButton("Worst Fit", false);
-        boton4.setBounds(50, 110, 100, 20);
-        panel.add(boton4);
-        
-        ButtonGroup grupobotones = new ButtonGroup();
-        grupobotones.add(boton1);
-        grupobotones.add(boton2);
-        grupobotones.add(boton3);
-        grupobotones.add(boton4);
-        
         botoninicial.setText("Ingresar");
         botoninicial.setBounds(520, 20, 120, 20);
         panel.add(botoninicial);
@@ -87,6 +81,8 @@ public class Vista extends JFrame{
     public void CajasdeTexto(){
         cajatexto.setBounds(300, 20, 200, 20);
         panel.add(cajatexto);
+        cajatexto2.setBounds(100,20,50,20);
+        panel.add(cajatexto2);
     }
     
     public void cuadroinicial(){
