@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ManejoMemoria;
+package asigancion_memoria;
 
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -37,23 +38,28 @@ public class Vista extends JFrame{
     }
     public void iniciarComponentes(){
         this.setVisible(true);
+        int i;
+        g = new JLabel[10];
+            for(i=0;i<10;i++)
+            {
+                g[i]=new JLabel();
+                
+           
+            }
         Panel();
         Botones(); 
         labels();
         CajasdeTexto();
         cuadroinicial();
         cuadro2();
-        
-       int i;
-        g = new JLabel[10];
-            for(i=0;i<10;i++)
-            {
-                g[i]=new JLabel();
-                g[i].setBounds(0, 0, 0, 0);
-           
-            }
          for(i=0;i<10;i++)
             {
+                g[i].setHorizontalAlignment(SwingConstants.CENTER);
+                g[i].setOpaque(true);
+                g[i].setForeground(Color.RED);
+                g[i].setBackground(Color.WHITE);
+                g[i].setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                g[i].setFont(new Font("arial",Font.PLAIN,10));
                 panel.add(g[i]);
             }
             
