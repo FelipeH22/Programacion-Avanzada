@@ -2,13 +2,13 @@ package serializacion;
 
 import java.sql.*;
 
-public class DBEstudiantes {
-    DBConexion cn;
+public class Estudiantes {
+    Conexion cn;
     String BD;
     String Tabla;
 
-    public DBEstudiantes() {
-        cn = new DBConexion();
+    public Estudiantes() {
+        cn = new Conexion();
     }
 
     public estudiante[] getContactos(){
@@ -78,7 +78,7 @@ public class DBEstudiantes {
                     System.out.println(e);
                 }
                     return resultado;
-                }
+    }
 
     public int actualizarContacto(estudiante c){
     int resultado = 0;

@@ -3,7 +3,7 @@ package serializacion;
 
 
 import java.sql.*;
-public class DBConexion {
+public class Conexion {
     static String bd = "estudiantes";
     static String login = "root";
     static String password = "felipe22";
@@ -11,13 +11,10 @@ public class DBConexion {
 
     Connection conexion = null;
 
-    public DBConexion() {
+    public Conexion() {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(url,login,password);
-            if (conexion!=null){
-                System.out.println("Conexión a base de datos "+bd+" OK");
-            }
         }catch(SQLException e){
             System.out.println(e);
         }catch(ClassNotFoundException e){

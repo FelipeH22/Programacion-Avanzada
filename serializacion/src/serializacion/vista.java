@@ -2,15 +2,20 @@ package serializacion;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.ObjectInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class vista implements ActionListener{
+    FileInputStream fis = null;
+    ObjectInputStream entrada = null;
     serializa s = new serializa();
-    DBConexion cn = new DBConexion();
+    Conexion cn = new Conexion();
     JFrame frame;
     JPanel panel;
     JMenuBar menuBar;
@@ -28,13 +33,14 @@ public class vista implements ActionListener{
     JButton botonPromedio;
     String[] columNames = {"id_estudiantes","Nombres","Nota1","Nota2","Nota3"};
 
-    DBEstudiantes dbc = new DBEstudiantes();
+    Estudiantes dbc = new Estudiantes();
     estudiante[] contactos;
     int estado=0;
     int fila;
     public vista() throws IOException {
-        initComponents();
         s.crea_todo();
+        initComponents();
+        
     }
 
     public void initComponents(){
@@ -75,6 +81,9 @@ public class vista implements ActionListener{
         labelNombre = new JLabel("Nombre",SwingConstants.RIGHT);
         labelNombre.setBounds(x,y,labelAncho,labelAlto);
         panelInformacion.add(labelNombre);
+        
+        contactos = dbc.getContactos();
+        Object[][] data = new Object[contactos.length][5];
 
         textNombre = new JTextField();
         textNombre.setBounds(x+160,y,textAncho,textAlto);
@@ -131,14 +140,25 @@ public class vista implements ActionListener{
         panelInformacion.add(botonPromedio);
         botonPromedio.addActionListener(this);
 
-        contactos = dbc.getContactos();
-        Object[][] data = new Object[contactos.length][5];
-        for (int c=0;c<contactos.length;c++){
-            data[c][0]=contactos[c].getId();
-            data[c][1]=contactos[c].getNombre();
-            data[c][2]=contactos[c].getNota1();
-            data[c][3]=contactos[c].getNota2();
-            data[c][4]=contactos[c].getNota3();           
+        
+        try {            
+                fis = new FileInputStream("estudiantes.dat");
+                entrada = new ObjectInputStream(fis);
+                for (int c=0;c<contactos.length;c++){
+                    data[c][0] = (Integer) entrada.readObject();
+                    data[c][1] = (String) entrada.readObject();
+                    data[c][2] = (Float) entrada.readObject();
+                    data[c][3] = (Float) entrada.readObject();
+                    data[c][4] = (Float) entrada.readObject();
+                }
+                System.out.println("Información extraida del archivo... Añadiendo a Vista");
+                entrada.close();           
+        } catch (FileNotFoundException e) {
+            System.out.println("1"+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("2"+e.getMessage());
+        } catch (ClassNotFoundException ex){
+            System.out.println("3"+ex.getMessage());
         }
 
     
@@ -251,93 +271,6 @@ public class vista implements ActionListener{
         if(accion.equals("Salir")){
             frame.dispose();
         }
-        if(accion.equals("Borrar Tabla")){
-            String password = JOptionPane.showInputDialog(null, "Password");
-            String nameDB = JOptionPane.showInputDialog(null,"Nombre base de datos a operar");
-            String nameTabla = JOptionPane.showInputDialog(null,"Nombre tabla a eliminar");
-            if(password.equals(DBConexion.password))
-            {
-                JOptionPane.showMessageDialog(null, "Eliminando Tabla");
-                try{
-                    PreparedStatement pstm,pstm2;
-                    pstm2 = cn.getConexion().prepareStatement("use "+nameDB);
-                    int res2 = pstm2.executeUpdate();
-                    pstm = cn.getConexion().prepareStatement("drop table "+nameTabla);
-                    int res = pstm.executeUpdate();                
-                }catch(SQLException h){
-                    System.out.println(h);
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Acceso Denegado");
-            }            
-        }
-        if(accion.equals("Borrar Base de Datos")){
-            String password2 = JOptionPane.showInputDialog(null, "PasswordDB");
-            String NombreDB = JOptionPane.showInputDialog(null,"Nombre DB a borrar");
-            if(password2.equals(DBConexion.password))
-            {
-                JOptionPane.showMessageDialog(null, "Eliminando Base de datos");
-                try{
-                    PreparedStatement pstm;
-                    pstm = cn.getConexion().prepareStatement("drop database "+NombreDB);
-                    int res = pstm.executeUpdate();                
-                }catch(SQLException h){
-                    System.out.println(h);
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Acceso Denegado");
-            }            
-        }
-        /////////////////////Crear Base de Datos////////////////////////////////////////////////////////////////////////////////////////
-        if(accion.equals("Crear Base de Datos")){
-            String password2 = JOptionPane.showInputDialog(null, "PasswordDB");
-            if(password2.equals(DBConexion.password))
-            {
-                String Nombre_base = JOptionPane.showInputDialog(null, "Nombre DB");
-                try{
-                    PreparedStatement pstm;
-                    pstm = cn.getConexion().prepareStatement("create database "+Nombre_base);
-                    int res = pstm.executeUpdate();                
-                }catch(SQLException h){
-                    System.out.println(h);
-                }
-                
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Acceso Denegado");
-            }            
-        }
-        //////////////////////////////////////Crea Tabla//////////////////////////////////////////////////////////////////////////////
-        if(accion.equals("Crear Tabla")){
-            String password3 = JOptionPane.showInputDialog(null, "PasswordDB");
-            if(password3.equals(DBConexion.password))
-            {
-                String Nombre_DB = JOptionPane.showInputDialog(null, "Nombre DB a insertar");
-                String Nombre_Tabla = JOptionPane.showInputDialog(null, "Nombre Tabla");
-                try{
-                    PreparedStatement pstm,pstm2;
-                    pstm2 = cn.getConexion().prepareStatement("use "+Nombre_DB);
-                    int res2 = pstm2.executeUpdate();
-                    pstm = cn.getConexion().prepareStatement("CREATE TABLE "+ Nombre_Tabla +"( id_estudiantes INT PRIMARY KEY NOT NULL AUTO_INCREMENT, Nombre VARCHAR(20), Nota1 FLOAT, Nota2 FLOAT, Nota3 FLOAT  );");
-                    int res = pstm.executeUpdate();   
-                    JOptionPane.showMessageDialog(null, "Tabla Creada");
-                    this.initComponents();
-                    //panel.repaint();
-                }catch(SQLException h){
-                    System.out.println(h);
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Acceso Denegado");
-            }            
-        }
-        /////////////////////////
         if(accion.equals("Nuevo estudiante")){
             limpiarCampos();
             this.estado=1;
@@ -358,6 +291,7 @@ public class vista implements ActionListener{
                 modeloTabla.addRow(newRow);
                 JOptionPane.showMessageDialog(null, "Estudiante agregado");
             }
+            
         }else if(this.estado==3){ 
             estudiante c = new estudiante();
             c.setId(Integer.parseInt(textId.getText(),10));
@@ -375,6 +309,11 @@ public class vista implements ActionListener{
             }
         }
         contactos = dbc.getContactos();
+        try {
+                s.crea_todo();
+            } catch (IOException ex) {
+                Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
+            }
         limpiarCampos();
         this.estado=0;
     }
@@ -402,6 +341,11 @@ public class vista implements ActionListener{
         }
         contactos = dbc.getContactos();
         this.estado=0;
+        try {
+                s.crea_todo();
+            } catch (IOException ex) {
+                Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     alterarEstado();
     }
