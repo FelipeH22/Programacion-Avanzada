@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Determinante</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font-family: "courier";
+            }
+            table{
+                border-color: blue;
+            }
+            td{
+                border-color: white;
+            }
+            input{
+                border-color: red;
+            }
+            #boton{
+                margin-top: 13px;            }
+            
+        </style>
+    </head>
+    <body>
+        <h2>Determinantes</h2>
+        <div>
+            <form action="NewServlet" method="post">
+                <table border="1">
+                    <tbody>
+                        <tr>
+                            <td><input type="number" name="v1"></td>
+                            <td><input type="number" name="v2"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="v3"></td>
+                            <td><input type="number" name="v4"></td>
+                        </tr>
+                    </tbody>
+                </table> 
+                <input id="boton" value="enviar" type="submit">
+            </form>
+        </div>
+    </body>
+</html>
