@@ -38,9 +38,15 @@ public class main extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         String equipo1 = "COLOMBIA";
+        String equipo2 = "BRASIL";
+        request.setAttribute("equipo1", "COLOMBia");
         PrintWriter sale = response.getWriter();
-        String cambio = "<span style = 'background-color:yellow;color:red;'>";
-        sale.println(cambio+" El determinante es: "+equipo1+"</span>");
+        String cambio ="<form action=\"NewServlet\" method=\"post\">\n" +
+"                           <label>"+equipo1+"</label><br>\n" +
+                            "<label>"+equipo2+"</label>\n"+
+"                           <input id=\"boton\" value=\"enviar\" type=\"submit\">\n" +
+"                        </form>";
+        sale.println(cambio);
     }
 
     @Override
