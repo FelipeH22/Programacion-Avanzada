@@ -2,16 +2,24 @@ package futbol;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/NewServlet"})
-public class main extends HttpServlet {
+@WebServlet(name = "etapa2", urlPatterns = {"/etapa2"})
+public class etapa2 extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    ArrayList<Integer> resultado = new ArrayList<>();
+    String equipo1="";
+    String equipo2="";
+    String equipo3="";
+    String equipo4="";
+  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -19,32 +27,28 @@ public class main extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");            
+            out.println("<title>Servlet etapa2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet etapa2 at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        throws ServletException, IOException {
+            
+            
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        String equipo1 = "COLOMBIA";
-        String equipo2 = "BRASIL";
-        String equipo3 = "ARGENTINA";
-        String equipo4 = "URUGAY";
-        String equipo5 = "PARAGUAY";
-        String equipo6 = "CHILE";
-        String equipo7 = "BOLIVIA";
-        String equipo8 = "VENEZUELA";
+            throws ServletException, IOException {
+        this.evalua_ganador(request, response);
         PrintWriter sale = response.getWriter();
         String cambio = "<!DOCTYPE html>\n" +
         "\n" +
@@ -99,31 +103,6 @@ public class main extends HttpServlet {
         "                                        <td><input type=\"number\" name=\"v4\"></td> \n" +
         "                                    </tr> \n" +
         "                                </tbody> \n" +
-        "                            </table> \n" +
-        "                            <table border=\"1\"> \n" +
-        "                                <tbody> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo5+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v5\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo6+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v6\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                </tbody> \n" +
-        "                            </table> \n" +
-        "                            <table border=\"1\"> \n" +
-        "                                <tbody> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo7+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v7\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo8+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v8\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                </tbody> \n" +
-        "                            </table> \n" +
         "                               <input id=\"boton\"type=\"submit\" value=\"Confirmar\"></td>\n" +
         "                \n" +
         "                        </form>" +
@@ -138,6 +117,92 @@ public class main extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
+    
+    
+    public void evalua_ganador(HttpServletRequest request, HttpServletResponse response){
+        
+        resultado.add(Integer.valueOf(request.getParameter("v1")));
+        resultado.add(Integer.valueOf(request.getParameter("v2")));
+        resultado.add(Integer.valueOf(request.getParameter("v3")));
+        resultado.add(Integer.valueOf(request.getParameter("v4")));
+        resultado.add(Integer.valueOf(request.getParameter("v5")));
+        resultado.add(Integer.valueOf(request.getParameter("v6")));
+        resultado.add(Integer.valueOf(request.getParameter("v7")));
+        resultado.add(Integer.valueOf(request.getParameter("v8")));
+        
+        
+        
+        //PARTIDO 1
+        if(resultado.get(0)>resultado.get(1))
+        {
+            equipo1="Colombia";
+        }
+        else
+        {
+            if(resultado.get(0)<resultado.get(1))
+            {
+                equipo1="Brasil";
+            }
+            
+            if(resultado.get(0)==resultado.get(1))
+            {
+                
+            }
+        }
+        
+        //PARTIDO 2
+        if(resultado.get(2)>resultado.get(3))
+        {
+            equipo2="Argentina";
+        }
+        else
+        {
+            if(resultado.get(2)<resultado.get(3))
+            {
+                equipo2="Urugay";
+            }
+            
+            if(resultado.get(2)==resultado.get(3))
+            {
+                
+            }
+        }
+        
+        //PARTIDO 3
+        if(resultado.get(4)>resultado.get(5))
+        {
+            equipo3="Paraguay";
+        }
+        else
+        {
+            if(resultado.get(4)<resultado.get(5))
+            {
+                equipo3="Chile";
+            }
+            
+            if(resultado.get(4)==resultado.get(5))
+            {
+                
+            }
+        }
+        
+        //PARTIDO 4
+        if(resultado.get(6)>resultado.get(7))
+        {
+            equipo4="Bolivia";
+        }
+        else
+        {
+            if(resultado.get(6)<resultado.get(7))
+            {
+                equipo4="Venezuela";
+            }
+            
+            if(resultado.get(6)==resultado.get(7))
+            {
+                
+            }
+        }
+    }
 }
