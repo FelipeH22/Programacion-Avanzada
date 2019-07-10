@@ -48,68 +48,7 @@ public class etapa2 extends HttpServlet {
             throws ServletException, IOException {
         this.evalua_ganador(request, response);
         PrintWriter sale = response.getWriter();
-        String cambio = "<!DOCTYPE html>\n" +
-        "\n" +
-        "<html>\n" +
-        "    <head>\n" +
-        "        <title>Copa América</title>\n" +
-        "        <meta charset=\"UTF-8\">\n" +
-        "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-        "        <style>\n" +
-        "            body{\n" +
-        "                font-family: \"courier\";\n" +
-        "            }\n" +
-        "            table{\n" +
-        "                border-color: blue;\n" +
-        "            }\n" +
-        "            td{\n" +
-        "                border-color: white;\n" +
-        "            }\n" +
-        "            input{\n" +
-        "                border-color: red;\n" +
-        "            }\n" +
-        "            #boton{\n" +
-        "                margin-top: 13px;            \n" +
-        "            }\n" +
-        "            \n" +
-        "        </style>\n" +
-        "    </head>\n" +
-        "    <body>\n" +
-        "        <h2>Cuartos Copa América</h2>\n" +
-        "        <div>\n"
-                        + "<form action=\"etapa3\" method=\"post\"> \n" +
-        "                           <table border=\"1\"> \n" +
-        "                                <tbody> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo1+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v1\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo2+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v2\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                </tbody> \n" +
-        "                            </table>\n" +
-        "                           <table border=\"1\"> \n" +
-        "                                <tbody> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo3+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v3\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo4+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v4\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                </tbody> \n" +
-        "                               <input id=\"boton\"type=\"submit\" value=\"Confirmar\"></td>\n" +
-        "                \n" +
-        "                        </form>" +
-
-        "        </div>\n" +
-        "    </body>\n" +
-        "</html>\n" +
-        "";
-        sale.println(cambio);
+        response.sendRedirect("etapa2.html");
     }
 
     @Override

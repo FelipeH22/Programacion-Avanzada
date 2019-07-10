@@ -45,7 +45,35 @@ public class etapa4 extends HttpServlet {
             throws ServletException, IOException {
         this.evalua_ganador(request, response);
         PrintWriter sale = response.getWriter();
-        String cambio = "<!DOCTYPE html>\n" +
+        response.sendRedirect("etapa4.html");
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+    
+    
+    public void evalua_ganador(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        PrintWriter sale = response.getWriter();
+        resultado.add(Integer.valueOf(request.getParameter("v1")));
+        resultado.add(Integer.valueOf(request.getParameter("v2")));   
+        
+        //PARTIDO 1
+        if(resultado.get(0)>resultado.get(1))
+        {
+            equipo1=etapa3.equipo1;
+        }
+        else
+        {
+            if(resultado.get(0)<resultado.get(1))
+            {
+                equipo1=etapa3.equipo2;
+            }
+            
+            if(resultado.get(0)==resultado.get(1))
+            {
+                String cambio = "<!DOCTYPE html>\n" +
         "\n" +
         "<html>\n" +
         "    <head>\n" +
@@ -69,39 +97,11 @@ public class etapa4 extends HttpServlet {
         "        </style>\n" +
         "    </head>\n" +
         "    <body>\n" +
-        "        <h2>El ganador es: "+equipo1+"</h2>\n" +    
+        "        <script src=\"etapa4.js\">"+"</script>" +    
         "    </body>\n" +
         "</html>\n" +
         "";
-        sale.println(cambio);
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-    
-    
-    public void evalua_ganador(HttpServletRequest request, HttpServletResponse response){
-        
-        resultado.add(Integer.valueOf(request.getParameter("v1")));
-        resultado.add(Integer.valueOf(request.getParameter("v2")));   
-        
-        //PARTIDO 1
-        if(resultado.get(0)>resultado.get(1))
-        {
-            equipo1=etapa3.equipo1;
-        }
-        else
-        {
-            if(resultado.get(0)<resultado.get(1))
-            {
-                equipo1=etapa3.equipo2;
-            }
-            
-            if(resultado.get(0)==resultado.get(1))
-            {
-                
+                sale.println(cambio);
             }
         }
     }
