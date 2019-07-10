@@ -9,14 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "etapa2", urlPatterns = {"/etapa2"})
-public class etapa2 extends HttpServlet {
+@WebServlet(name = "etapa3", urlPatterns = {"/etapa3"})
+public class etapa3 extends HttpServlet {
 
     ArrayList<Integer> resultado = new ArrayList<>();
     public static String equipo1="";
     public static String equipo2="";
-    public static String equipo3="";
-    public static String equipo4="";
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -75,9 +73,9 @@ public class etapa2 extends HttpServlet {
         "        </style>\n" +
         "    </head>\n" +
         "    <body>\n" +
-        "        <h2>Cuartos Copa América</h2>\n" +
+        "        <h2>Semifinal Copa América</h2>\n" +
         "        <div>\n"
-                        + "<form action=\"etapa3\" method=\"post\"> \n" +
+                        + "<form action=\"etapa4\" method=\"post\"> \n" +
         "                           <table border=\"1\"> \n" +
         "                                <tbody> \n" +
         "                                    <tr> \n" +
@@ -90,17 +88,6 @@ public class etapa2 extends HttpServlet {
         "                                    </tr> \n" +
         "                                </tbody> \n" +
         "                            </table>\n" +
-        "                           <table border=\"1\"> \n" +
-        "                                <tbody> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo3+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v3\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                    <tr> \n" +
-        "                                        <td>"+equipo4+"</td> \n" +
-        "                                        <td><input type=\"number\" name=\"v4\"></td> \n" +
-        "                                    </tr> \n" +
-        "                                </tbody> \n" +
         "                               <input id=\"boton\"type=\"submit\" value=\"Confirmar\"></td>\n" +
         "                \n" +
         "                        </form>" +
@@ -123,24 +110,18 @@ public class etapa2 extends HttpServlet {
         resultado.add(Integer.valueOf(request.getParameter("v1")));
         resultado.add(Integer.valueOf(request.getParameter("v2")));
         resultado.add(Integer.valueOf(request.getParameter("v3")));
-        resultado.add(Integer.valueOf(request.getParameter("v4")));
-        resultado.add(Integer.valueOf(request.getParameter("v5")));
-        resultado.add(Integer.valueOf(request.getParameter("v6")));
-        resultado.add(Integer.valueOf(request.getParameter("v7")));
-        resultado.add(Integer.valueOf(request.getParameter("v8")));
-        
-        
+        resultado.add(Integer.valueOf(request.getParameter("v4")));       
         
         //PARTIDO 1
         if(resultado.get(0)>resultado.get(1))
         {
-            equipo1="Colombia";
+            equipo1=etapa2.equipo1;
         }
         else
         {
             if(resultado.get(0)<resultado.get(1))
             {
-                equipo1="Brasil";
+                equipo1=etapa2.equipo2;
             }
             
             if(resultado.get(0)==resultado.get(1))
@@ -152,52 +133,16 @@ public class etapa2 extends HttpServlet {
         //PARTIDO 2
         if(resultado.get(2)>resultado.get(3))
         {
-            equipo2="Argentina";
+            equipo2=etapa2.equipo3;
         }
         else
         {
             if(resultado.get(2)<resultado.get(3))
             {
-                equipo2="Urugay";
+                equipo2=etapa2.equipo4;
             }
             
             if(resultado.get(2)==resultado.get(3))
-            {
-                
-            }
-        }
-        
-        //PARTIDO 3
-        if(resultado.get(4)>resultado.get(5))
-        {
-            equipo3="Paraguay";
-        }
-        else
-        {
-            if(resultado.get(4)<resultado.get(5))
-            {
-                equipo3="Chile";
-            }
-            
-            if(resultado.get(4)==resultado.get(5))
-            {
-                
-            }
-        }
-        
-        //PARTIDO 4
-        if(resultado.get(6)>resultado.get(7))
-        {
-            equipo4="Bolivia";
-        }
-        else
-        {
-            if(resultado.get(6)<resultado.get(7))
-            {
-                equipo4="Venezuela";
-            }
-            
-            if(resultado.get(6)==resultado.get(7))
             {
                 
             }
