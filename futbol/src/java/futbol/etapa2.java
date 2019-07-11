@@ -45,6 +45,7 @@ public class etapa2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        resultado.clear();
         this.evalua_ganador(request, response);
         request.setAttribute("equipo1", equipo1);
         request.setAttribute("equipo2", equipo2);
@@ -83,11 +84,6 @@ public class etapa2 extends HttpServlet {
             {
                 equipo1="Brasil";
             }
-            
-            if(Objects.equals(resultado.get(0), resultado.get(1)))
-            {
-
-            }
         }
         
         //PARTIDO 2
@@ -100,11 +96,6 @@ public class etapa2 extends HttpServlet {
             if(resultado.get(2)<resultado.get(3))
             {
                 equipo2="Urugay";
-            }
-            
-            if(resultado.get(2)==resultado.get(3))
-            {
-                empate=true;
             }
         }
         
@@ -119,11 +110,6 @@ public class etapa2 extends HttpServlet {
             {
                 equipo3="Chile";
             }
-            
-            if(resultado.get(4)==resultado.get(5))
-            {
-                empate=true;
-            }
         }
         
         //PARTIDO 4
@@ -136,11 +122,6 @@ public class etapa2 extends HttpServlet {
             if(resultado.get(6)<resultado.get(7))
             {
                 equipo4="Venezuela";
-            }
-            
-            if(resultado.get(6)==resultado.get(7))
-            {
-                empate=true;
             }
         }
     }

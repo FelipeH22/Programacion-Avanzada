@@ -1,9 +1,3 @@
-<%-- 
-    Document   : etapa1
-    Created on : 10-jul-2019, 20:50:38
-    Author     : felipe
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
  <html>
@@ -15,6 +9,7 @@
                 font-family: courier; 
             } 
             table{ 
+                margin-top: 13px;
                 border-color: blue; 
             } 
             td{ 

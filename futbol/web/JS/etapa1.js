@@ -66,14 +66,14 @@ function evalua()
             v8=prompt("Digite el valor en penaltis de: "+equipo8);
         }
     }     
-    document.getElementsByName("v1").value=v1;
-    document.getElementsByName("v2").value=v2;
-    document.getElementsByName("v3").value=v3;
-    document.getElementsByName("v4").value=v4;
-    document.getElementsByName("v5").value=v5;
-    document.getElementsByName("v6").value=v6;
-    document.getElementsByName("v7").value=v7;
-    document.getElementsByName("v8").value=v8;  
+    document.getElementsByName("v1")[0].value=v1;
+    document.getElementsByName("v2")[0].value=v2;
+    document.getElementsByName("v3")[0].value=v3;
+    document.getElementsByName("v4")[0].value=v4;
+    document.getElementsByName("v5")[0].value=v5;
+    document.getElementsByName("v6")[0].value=v6;
+    document.getElementsByName("v7")[0].value=v7;
+    document.getElementsByName("v8")[0].value=v8;  
 }
 
 

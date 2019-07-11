@@ -15,6 +15,8 @@ public class etapa3 extends HttpServlet {
     ArrayList<Integer> resultado = new ArrayList<>();
     public static String equipo1="";
     public static String equipo2="";
+    public static String equipo3="";
+    public static String equipo4="";
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,9 +43,12 @@ public class etapa3 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        resultado.clear();
         this.evalua_ganador(request, response);
         request.setAttribute("equipo1",equipo1);
         request.setAttribute("equipo2",equipo2);
+        request.setAttribute("equipo3",equipo3);
+        request.setAttribute("equipo4",equipo4);
         this.processRequest(request, response);
     }
 
@@ -64,17 +69,14 @@ public class etapa3 extends HttpServlet {
         if(resultado.get(0)>resultado.get(1))
         {
             equipo1=etapa2.equipo1;
+            equipo3=etapa2.equipo2;
         }
         else
         {
             if(resultado.get(0)<resultado.get(1))
             {
                 equipo1=etapa2.equipo2;
-            }
-            
-            if(resultado.get(0)==resultado.get(1))
-            {
-                
+                equipo3=etapa2.equipo1;
             }
         }
         
@@ -82,17 +84,14 @@ public class etapa3 extends HttpServlet {
         if(resultado.get(2)>resultado.get(3))
         {
             equipo2=etapa2.equipo3;
+            equipo4=etapa2.equipo4;
         }
         else
         {
             if(resultado.get(2)<resultado.get(3))
             {
                 equipo2=etapa2.equipo4;
-            }
-            
-            if(resultado.get(2)==resultado.get(3))
-            {
-                
+                equipo4=etapa2.equipo3;
             }
         }
     }

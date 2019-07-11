@@ -1,9 +1,3 @@
-<%-- 
-    Document   : etapa4
-    Created on : 10-jul-2019, 20:49:36
-    Author     : felipe
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
          
@@ -28,6 +22,8 @@
         </style> 
     </head> 
     <body> 
-        <h2>El ganador es: ${equipo1} </h2>     
+        <h2>El primer lugar es: ${equipo1} </h2>     
+        <h2>El segundo lugar es: ${equipo2} </h2>
+        <h2>El tercer lugar es: ${equipo3} </h2>
     </body> 
 </html> 
