@@ -15,20 +15,17 @@ public class etapa3 extends HttpServlet {
     ArrayList<Integer> resultado = new ArrayList<>();
     public static String equipo1="";
     public static String equipo2="";
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet etapa2</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet etapa2 at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        PrintWriter out = response.getWriter();
+        try {
+            request.getRequestDispatcher("etapa3.jsp")
+                    .forward(request, response);
+        }
+        finally {
+            out.close();
         }
     }
 
@@ -45,7 +42,9 @@ public class etapa3 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         this.evalua_ganador(request, response);
-        response.sendRedirect("etapa3.html");
+        request.setAttribute("equipo1",equipo1);
+        request.setAttribute("equipo2",equipo2);
+        this.processRequest(request, response);
     }
 
     @Override
