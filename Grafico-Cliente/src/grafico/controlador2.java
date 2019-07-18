@@ -33,11 +33,11 @@ public class controlador2 implements ActionListener{
             numero.add(Integer.valueOf(v.numero[i].getText()));
         }
         t.initClient();
-        try {
+        /*try {
             t.mensaje.writeUTF("HOLA");
         } catch (IOException ex) {
             Logger.getLogger(controlador2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
     
 }

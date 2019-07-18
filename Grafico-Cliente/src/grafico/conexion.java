@@ -7,7 +7,7 @@ import java.io.*;
 public class conexion {
 
     final String HOST = "localhost";
-    final int PUERTO=4040;
+    final int PUERTO=5000;
     public Socket sc;
     public DataOutputStream mensaje;
     public DataInputStream entrada;
