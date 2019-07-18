@@ -9,10 +9,8 @@ public class conexion {
     final String HOST = "localhost";
     final int PUERTO=5000;
     public Socket sc;
-    public DataOutputStream mensaje;
-    public DataInputStream entrada;
-
-    //Cliente
+    public ObjectOutputStream mensaje;
+    public ObjectInputStream entrada;
 
     public void initClient()
 
@@ -20,15 +18,17 @@ public class conexion {
         try
         {
             sc = new Socket( HOST , PUERTO );
-            mensaje = new DataOutputStream(sc.getOutputStream());
+            mensaje = new ObjectOutputStream(sc.getOutputStream());
+            mensaje.writeObject(controlador2.x);
+            mensaje.writeObject(controlador2.y);
+            mensaje.writeObject(controlador2.inecuacion);
+            mensaje.writeObject(controlador2.numero);
             sc.close();
 
         }catch(Exception e )
 
         {
-
             System.out.println("Error: "+e.getMessage());
-
         }
 
     }

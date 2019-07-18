@@ -11,10 +11,10 @@ public class controlador2 implements ActionListener{
 
     vista v = new vista();
     conexion t = new conexion();
-    ArrayList<Integer> x = new ArrayList<>();
-    ArrayList<Integer> y = new ArrayList<>();
-    ArrayList<String> inecuacion = new ArrayList<>();
-    ArrayList<Integer> numero = new ArrayList<>();
+    public static ArrayList<Integer> x = new ArrayList<>();
+    public static ArrayList<Integer> y = new ArrayList<>();
+    public static ArrayList<String> inecuacion = new ArrayList<>();
+    public static ArrayList<Integer> numero = new ArrayList<>();
     int i;
     
     controlador2(vista v, conexion t) {
